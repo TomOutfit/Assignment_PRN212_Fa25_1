@@ -1,0 +1,50 @@
+[
+  {
+    "roomTypeID": 1,
+    "roomTypeName": "Standard Single",
+    "typeDescription": "Comfortable single room with basic amenities",
+    "typeNote": "Perfect for solo travelers"
+  },
+  {
+    "roomTypeID": 2,
+    "roomTypeName": "Standard Double",
+    "typeDescription": "Spacious double room with modern facilities",
+    "typeNote": "Ideal for couples"
+  },
+  {
+    "roomTypeID": 3,
+    "roomTypeName": "Deluxe Suite",
+    "typeDescription": "Luxurious suite with separate living area",
+    "typeNote": "Premium accommodation with extra space"
+  },
+  {
+    "roomTypeID": 4,
+    "roomTypeName": "Family Room",
+    "typeDescription": "Large room designed for families with children",
+    "typeNote": "Includes extra beds and family amenities"
+  },
+  {
+    "roomTypeID": 5,
+    "roomTypeName": "Executive Suite",
+    "typeDescription": "High-end suite with business facilities",
+    "typeNote": "Perfect for business travelers"
+  },
+  {
+    "roomTypeID": 6,
+    "roomTypeName": "Presidential Suite",
+    "typeDescription": "Ultimate luxury with panoramic views",
+    "typeNote": "Our most prestigious accommodation"
+  },
+  {
+    "roomTypeID": 7,
+    "roomTypeName": "Ocean View Room",
+    "typeDescription": "Room with stunning ocean views",
+    "typeNote": "Breathtaking sea views included"
+  },
+  {
+    "roomTypeID": 8,
+    "roomTypeName": "Garden View Room",
+    "typeDescription": "Peaceful room overlooking hotel gardens",
+    "typeNote": "Tranquil garden setting"
+  }
+]

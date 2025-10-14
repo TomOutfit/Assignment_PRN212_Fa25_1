@@ -1,0 +1,452 @@
+[
+  {
+    "customerID": 1,
+    "customerFullName": "John Doe",
+    "telephone": "0123456789",
+    "emailAddress": "john.doe@email.com",
+    "customerBirthday": "1990-05-15T00:00:00",
+    "customerStatus": 1,
+    "password": "password123"
+  },
+  {
+    "customerID": 2,
+    "customerFullName": "Jane Smith",
+    "telephone": "0987654321",
+    "emailAddress": "jane.smith@email.com",
+    "customerBirthday": "1985-08-22T00:00:00",
+    "customerStatus": 1,
+    "password": "password456"
+  },
+  {
+    "customerID": 3,
+    "customerFullName": "Michael Johnson",
+    "telephone": "0123456780",
+    "emailAddress": "michael.johnson@email.com",
+    "customerBirthday": "1988-03-10T00:00:00",
+    "customerStatus": 1,
+    "password": "password789"
+  },
+  {
+    "customerID": 4,
+    "customerFullName": "Sarah Wilson",
+    "telephone": "0987654320",
+    "emailAddress": "sarah.wilson@email.com",
+    "customerBirthday": "1992-11-28T00:00:00",
+    "customerStatus": 1,
+    "password": "sarah123"
+  },
+  {
+    "customerID": 5,
+    "customerFullName": "David Brown",
+    "telephone": "0123456781",
+    "emailAddress": "david.brown@email.com",
+    "customerBirthday": "1987-07-14T00:00:00",
+    "customerStatus": 1,
+    "password": "david456"
+  },
+  {
+    "customerID": 6,
+    "customerFullName": "Emily Davis",
+    "telephone": "0987654322",
+    "emailAddress": "emily.davis@email.com",
+    "customerBirthday": "1995-02-03T00:00:00",
+    "customerStatus": 1,
+    "password": "emily789"
+  },
+  {
+    "customerID": 7,
+    "customerFullName": "Robert Miller",
+    "telephone": "0123456782",
+    "emailAddress": "robert.miller@email.com",
+    "customerBirthday": "1983-09-17T00:00:00",
+    "customerStatus": 1,
+    "password": "robert123"
+  },
+  {
+    "customerID": 8,
+    "customerFullName": "Lisa Garcia",
+    "telephone": "0987654323",
+    "emailAddress": "lisa.garcia@email.com",
+    "customerBirthday": "1991-12-25T00:00:00",
+    "customerStatus": 1,
+    "password": "lisa456"
+  },
+  {
+    "customerID": 9,
+    "customerFullName": "James Wilson",
+    "telephone": "0123456783",
+    "emailAddress": "james.wilson@email.com",
+    "customerBirthday": "1986-04-08T00:00:00",
+    "customerStatus": 1,
+    "password": "james789"
+  },
+  {
+    "customerID": 10,
+    "customerFullName": "Maria Rodriguez",
+    "telephone": "0987654324",
+    "emailAddress": "maria.rodriguez@email.com",
+    "customerBirthday": "1993-06-20T00:00:00",
+    "customerStatus": 1,
+    "password": "maria123"
+  },
+  {
+    "customerID": 11,
+    "customerFullName": "William Anderson",
+    "telephone": "0123456784",
+    "emailAddress": "william.anderson@email.com",
+    "customerBirthday": "1989-01-12T00:00:00",
+    "customerStatus": 1,
+    "password": "william456"
+  },
+  {
+    "customerID": 12,
+    "customerFullName": "Jennifer Taylor",
+    "telephone": "0987654325",
+    "emailAddress": "jennifer.taylor@email.com",
+    "customerBirthday": "1994-10-05T00:00:00",
+    "customerStatus": 1,
+    "password": "jennifer789"
+  },
+  {
+    "customerID": 13,
+    "customerFullName": "Christopher Thomas",
+    "telephone": "0123456785",
+    "emailAddress": "christopher.thomas@email.com",
+    "customerBirthday": "1984-03-30T00:00:00",
+    "customerStatus": 1,
+    "password": "christopher123"
+  },
+  {
+    "customerID": 14,
+    "customerFullName": "Amanda Jackson",
+    "telephone": "0987654326",
+    "emailAddress": "amanda.jackson@email.com",
+    "customerBirthday": "1996-08-18T00:00:00",
+    "customerStatus": 1,
+    "password": "amanda456"
+  },
+  {
+    "customerID": 15,
+    "customerFullName": "Daniel White",
+    "telephone": "0123456786",
+    "emailAddress": "daniel.white@email.com",
+    "customerBirthday": "1987-11-22T00:00:00",
+    "customerStatus": 1,
+    "password": "daniel789"
+  },
+  {
+    "customerID": 16,
+    "customerFullName": "Ashley Harris",
+    "telephone": "0987654327",
+    "emailAddress": "ashley.harris@email.com",
+    "customerBirthday": "1992-05-07T00:00:00",
+    "customerStatus": 1,
+    "password": "ashley123"
+  },
+  {
+    "customerID": 17,
+    "customerFullName": "Matthew Martin",
+    "telephone": "0123456787",
+    "emailAddress": "matthew.martin@email.com",
+    "customerBirthday": "1985-09-13T00:00:00",
+    "customerStatus": 1,
+    "password": "matthew456"
+  },
+  {
+    "customerID": 18,
+    "customerFullName": "Jessica Thompson",
+    "telephone": "0987654328",
+    "emailAddress": "jessica.thompson@email.com",
+    "customerBirthday": "1990-12-01T00:00:00",
+    "customerStatus": 1,
+    "password": "jessica789"
+  },
+  {
+    "customerID": 19,
+    "customerFullName": "Andrew Garcia",
+    "telephone": "0123456788",
+    "emailAddress": "andrew.garcia@email.com",
+    "customerBirthday": "1988-07-26T00:00:00",
+    "customerStatus": 1,
+    "password": "andrew123"
+  },
+  {
+    "customerID": 20,
+    "customerFullName": "Stephanie Martinez",
+    "telephone": "0987654329",
+    "emailAddress": "stephanie.martinez@email.com",
+    "customerBirthday": "1991-04-15T00:00:00",
+    "customerStatus": 1,
+    "password": "stephanie456"
+  },
+  {
+    "customerID": 21,
+    "customerFullName": "Ryan Robinson",
+    "telephone": "0123456789",
+    "emailAddress": "ryan.robinson@email.com",
+    "customerBirthday": "1986-10-09T00:00:00",
+    "customerStatus": 1,
+    "password": "ryan789"
+  },
+  {
+    "customerID": 22,
+    "customerFullName": "Nicole Clark",
+    "telephone": "0987654330",
+    "emailAddress": "nicole.clark@email.com",
+    "customerBirthday": "1993-01-24T00:00:00",
+    "customerStatus": 1,
+    "password": "nicole123"
+  },
+  {
+    "customerID": 23,
+    "customerFullName": "Kevin Rodriguez",
+    "telephone": "0123456790",
+    "emailAddress": "kevin.rodriguez@email.com",
+    "customerBirthday": "1989-06-11T00:00:00",
+    "customerStatus": 1,
+    "password": "kevin456"
+  },
+  {
+    "customerID": 24,
+    "customerFullName": "Rachel Lewis",
+    "telephone": "0987654331",
+    "emailAddress": "rachel.lewis@email.com",
+    "customerBirthday": "1994-03-04T00:00:00",
+    "customerStatus": 1,
+    "password": "rachel789"
+  },
+  {
+    "customerID": 25,
+    "customerFullName": "Brandon Lee",
+    "telephone": "0123456791",
+    "emailAddress": "brandon.lee@email.com",
+    "customerBirthday": "1987-12-17T00:00:00",
+    "customerStatus": 1,
+    "password": "brandon123"
+  },
+  {
+    "customerID": 26,
+    "customerFullName": "Michelle Walker",
+    "telephone": "0987654332",
+    "emailAddress": "michelle.walker@email.com",
+    "customerBirthday": "1992-08-30T00:00:00",
+    "customerStatus": 1,
+    "password": "michelle456"
+  },
+  {
+    "customerID": 27,
+    "customerFullName": "Tyler Hall",
+    "telephone": "0123456792",
+    "emailAddress": "tyler.hall@email.com",
+    "customerBirthday": "1985-05-02T00:00:00",
+    "customerStatus": 1,
+    "password": "tyler789"
+  },
+  {
+    "customerID": 28,
+    "customerFullName": "Samantha Allen",
+    "telephone": "0987654333",
+    "emailAddress": "samantha.allen@email.com",
+    "customerBirthday": "1996-11-14T00:00:00",
+    "customerStatus": 1,
+    "password": "samantha123"
+  },
+  {
+    "customerID": 29,
+    "customerFullName": "Justin Young",
+    "telephone": "0123456793",
+    "emailAddress": "justin.young@email.com",
+    "customerBirthday": "1983-09-27T00:00:00",
+    "customerStatus": 1,
+    "password": "justin456"
+  },
+  {
+    "customerID": 30,
+    "customerFullName": "Brittany King",
+    "telephone": "0987654334",
+    "emailAddress": "brittany.king@email.com",
+    "customerBirthday": "1991-02-19T00:00:00",
+    "customerStatus": 1,
+    "password": "brittany789"
+  },
+  {
+    "customerID": 31,
+    "customerFullName": "Nathan Wright",
+    "telephone": "0123456794",
+    "emailAddress": "nathan.wright@email.com",
+    "customerBirthday": "1988-07-06T00:00:00",
+    "customerStatus": 1,
+    "password": "nathan123"
+  },
+  {
+    "customerID": 32,
+    "customerFullName": "Lauren Lopez",
+    "telephone": "0987654335",
+    "emailAddress": "lauren.lopez@email.com",
+    "customerBirthday": "1995-04-23T00:00:00",
+    "customerStatus": 1,
+    "password": "lauren456"
+  },
+  {
+    "customerID": 33,
+    "customerFullName": "Zachary Hill",
+    "telephone": "0123456795",
+    "emailAddress": "zachary.hill@email.com",
+    "customerBirthday": "1986-12-10T00:00:00",
+    "customerStatus": 1,
+    "password": "zachary789"
+  },
+  {
+    "customerID": 34,
+    "customerFullName": "Kayla Scott",
+    "telephone": "0987654336",
+    "emailAddress": "kayla.scott@email.com",
+    "customerBirthday": "1993-10-31T00:00:00",
+    "customerStatus": 1,
+    "password": "kayla123"
+  },
+  {
+    "customerID": 35,
+    "customerFullName": "Jordan Green",
+    "telephone": "0123456796",
+    "emailAddress": "jordan.green@email.com",
+    "customerBirthday": "1989-01-16T00:00:00",
+    "customerStatus": 1,
+    "password": "jordan456"
+  },
+  {
+    "customerID": 36,
+    "customerFullName": "Megan Adams",
+    "telephone": "0987654337",
+    "emailAddress": "megan.adams@email.com",
+    "customerBirthday": "1994-06-28T00:00:00",
+    "customerStatus": 1,
+    "password": "megan789"
+  },
+  {
+    "customerID": 37,
+    "customerFullName": "Caleb Baker",
+    "telephone": "0123456797",
+    "emailAddress": "caleb.baker@email.com",
+    "customerBirthday": "1987-03-12T00:00:00",
+    "customerStatus": 1,
+    "password": "caleb123"
+  },
+  {
+    "customerID": 38,
+    "customerFullName": "Taylor Nelson",
+    "telephone": "0987654338",
+    "emailAddress": "taylor.nelson@email.com",
+    "customerBirthday": "1992-11-05T00:00:00",
+    "customerStatus": 1,
+    "password": "taylor456"
+  },
+  {
+    "customerID": 39,
+    "customerFullName": "Austin Carter",
+    "telephone": "0123456798",
+    "emailAddress": "austin.carter@email.com",
+    "customerBirthday": "1984-08-21T00:00:00",
+    "customerStatus": 1,
+    "password": "austin789"
+  },
+  {
+    "customerID": 40,
+    "customerFullName": "Brooke Mitchell",
+    "telephone": "0987654339",
+    "emailAddress": "brooke.mitchell@email.com",
+    "customerBirthday": "1996-05-14T00:00:00",
+    "customerStatus": 1,
+    "password": "brooke123"
+  },
+  {
+    "customerID": 41,
+    "customerFullName": "Connor Perez",
+    "telephone": "0123456799",
+    "emailAddress": "connor.perez@email.com",
+    "customerBirthday": "1985-12-03T00:00:00",
+    "customerStatus": 1,
+    "password": "connor456"
+  },
+  {
+    "customerID": 42,
+    "customerFullName": "Paige Roberts",
+    "telephone": "0987654340",
+    "emailAddress": "paige.roberts@email.com",
+    "customerBirthday": "1991-09-26T00:00:00",
+    "customerStatus": 1,
+    "password": "paige789"
+  },
+  {
+    "customerID": 43,
+    "customerFullName": "Hunter Turner",
+    "telephone": "0123456800",
+    "emailAddress": "hunter.turner@email.com",
+    "customerBirthday": "1988-04-18T00:00:00",
+    "customerStatus": 1,
+    "password": "hunter123"
+  },
+  {
+    "customerID": 44,
+    "customerFullName": "Destiny Phillips",
+    "telephone": "0987654341",
+    "emailAddress": "destiny.phillips@email.com",
+    "customerBirthday": "1993-01-09T00:00:00",
+    "customerStatus": 1,
+    "password": "destiny456"
+  },
+  {
+    "customerID": 45,
+    "customerFullName": "Blake Campbell",
+    "telephone": "0123456801",
+    "emailAddress": "blake.campbell@email.com",
+    "customerBirthday": "1986-10-22T00:00:00",
+    "customerStatus": 1,
+    "password": "blake789"
+  },
+  {
+    "customerID": 46,
+    "customerFullName": "Jasmine Parker",
+    "telephone": "0987654342",
+    "emailAddress": "jasmine.parker@email.com",
+    "customerBirthday": "1995-07-15T00:00:00",
+    "customerStatus": 1,
+    "password": "jasmine123"
+  },
+  {
+    "customerID": 47,
+    "customerFullName": "Ethan Evans",
+    "telephone": "0123456802",
+    "emailAddress": "ethan.evans@email.com",
+    "customerBirthday": "1989-02-28T00:00:00",
+    "customerStatus": 1,
+    "password": "ethan456"
+  },
+  {
+    "customerID": 48,
+    "customerFullName": "Alexis Edwards",
+    "telephone": "0987654343",
+    "emailAddress": "alexis.edwards@email.com",
+    "customerBirthday": "1994-12-11T00:00:00",
+    "customerStatus": 1,
+    "password": "alexis789"
+  },
+  {
+    "customerID": 49,
+    "customerFullName": "Noah Collins",
+    "telephone": "0123456803",
+    "emailAddress": "noah.collins@email.com",
+    "customerBirthday": "1987-06-04T00:00:00",
+    "customerStatus": 1,
+    "password": "noah123"
+  },
+  {
+    "customerID": 50,
+    "customerFullName": "Victoria Stewart",
+    "telephone": "0987654344",
+    "emailAddress": "victoria.stewart@email.com",
+    "customerBirthday": "1992-03-17T00:00:00",
+    "customerStatus": 1,
+    "password": "victoria456"
+  }
+]

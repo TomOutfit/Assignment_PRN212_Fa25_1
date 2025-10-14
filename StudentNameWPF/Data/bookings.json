@@ -1,0 +1,1102 @@
+[
+  {
+    "bookingID": 1,
+    "customerID": 1,
+    "roomID": 1,
+    "bookingDate": "2023-01-15T00:00:00",
+    "checkInDate": "2023-01-20T00:00:00",
+    "checkOutDate": "2023-01-25T00:00:00",
+    "totalAmount": 400.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 2,
+    "customerID": 2,
+    "roomID": 3,
+    "bookingDate": "2023-01-18T00:00:00",
+    "checkInDate": "2023-02-01T00:00:00",
+    "checkOutDate": "2023-02-05T00:00:00",
+    "totalAmount": 600.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 3,
+    "customerID": 3,
+    "roomID": 5,
+    "bookingDate": "2023-02-10T00:00:00",
+    "checkInDate": "2023-02-15T00:00:00",
+    "checkOutDate": "2023-02-20T00:00:00",
+    "totalAmount": 1000.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 4,
+    "customerID": 4,
+    "roomID": 6,
+    "bookingDate": "2023-02-20T00:00:00",
+    "checkInDate": "2023-03-01T00:00:00",
+    "checkOutDate": "2023-03-05T00:00:00",
+    "totalAmount": 900.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 5,
+    "customerID": 5,
+    "roomID": 7,
+    "bookingDate": "2023-03-05T00:00:00",
+    "checkInDate": "2023-03-10T00:00:00",
+    "checkOutDate": "2023-03-15T00:00:00",
+    "totalAmount": 1250.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 6,
+    "customerID": 6,
+    "roomID": 8,
+    "bookingDate": "2023-03-15T00:00:00",
+    "checkInDate": "2023-03-20T00:00:00",
+    "checkOutDate": "2023-03-25T00:00:00",
+    "totalAmount": 2500.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 7,
+    "customerID": 7,
+    "roomID": 9,
+    "bookingDate": "2023-04-01T00:00:00",
+    "checkInDate": "2023-04-05T00:00:00",
+    "checkOutDate": "2023-04-10T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 8,
+    "customerID": 8,
+    "roomID": 10,
+    "bookingDate": "2023-04-10T00:00:00",
+    "checkInDate": "2023-04-15T00:00:00",
+    "checkOutDate": "2023-04-20T00:00:00",
+    "totalAmount": 650.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 9,
+    "customerID": 9,
+    "roomID": 11,
+    "bookingDate": "2023-04-20T00:00:00",
+    "checkInDate": "2023-04-25T00:00:00",
+    "checkOutDate": "2023-04-30T00:00:00",
+    "totalAmount": 400.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 10,
+    "customerID": 10,
+    "roomID": 13,
+    "bookingDate": "2023-05-01T00:00:00",
+    "checkInDate": "2023-05-05T00:00:00",
+    "checkOutDate": "2023-05-10T00:00:00",
+    "totalAmount": 600.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 11,
+    "customerID": 11,
+    "roomID": 15,
+    "bookingDate": "2023-05-10T00:00:00",
+    "checkInDate": "2023-05-15T00:00:00",
+    "checkOutDate": "2023-05-20T00:00:00",
+    "totalAmount": 1000.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 12,
+    "customerID": 12,
+    "roomID": 16,
+    "bookingDate": "2023-05-20T00:00:00",
+    "checkInDate": "2023-05-25T00:00:00",
+    "checkOutDate": "2023-05-30T00:00:00",
+    "totalAmount": 900.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 13,
+    "customerID": 13,
+    "roomID": 17,
+    "bookingDate": "2023-06-01T00:00:00",
+    "checkInDate": "2023-06-05T00:00:00",
+    "checkOutDate": "2023-06-10T00:00:00",
+    "totalAmount": 1250.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 14,
+    "customerID": 14,
+    "roomID": 18,
+    "bookingDate": "2023-06-10T00:00:00",
+    "checkInDate": "2023-06-15T00:00:00",
+    "checkOutDate": "2023-06-20T00:00:00",
+    "totalAmount": 2500.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 15,
+    "customerID": 15,
+    "roomID": 19,
+    "bookingDate": "2023-06-20T00:00:00",
+    "checkInDate": "2023-06-25T00:00:00",
+    "checkOutDate": "2023-06-30T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 16,
+    "customerID": 16,
+    "roomID": 20,
+    "bookingDate": "2023-07-01T00:00:00",
+    "checkInDate": "2023-07-05T00:00:00",
+    "checkOutDate": "2023-07-10T00:00:00",
+    "totalAmount": 650.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 17,
+    "customerID": 17,
+    "roomID": 21,
+    "bookingDate": "2023-07-10T00:00:00",
+    "checkInDate": "2023-07-15T00:00:00",
+    "checkOutDate": "2023-07-20T00:00:00",
+    "totalAmount": 400.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 18,
+    "customerID": 18,
+    "roomID": 23,
+    "bookingDate": "2023-07-20T00:00:00",
+    "checkInDate": "2023-07-25T00:00:00",
+    "checkOutDate": "2023-07-30T00:00:00",
+    "totalAmount": 600.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 19,
+    "customerID": 19,
+    "roomID": 25,
+    "bookingDate": "2023-08-01T00:00:00",
+    "checkInDate": "2023-08-05T00:00:00",
+    "checkOutDate": "2023-08-10T00:00:00",
+    "totalAmount": 1000.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 20,
+    "customerID": 20,
+    "roomID": 26,
+    "bookingDate": "2023-08-10T00:00:00",
+    "checkInDate": "2023-08-15T00:00:00",
+    "checkOutDate": "2023-08-20T00:00:00",
+    "totalAmount": 900.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 21,
+    "customerID": 21,
+    "roomID": 27,
+    "bookingDate": "2023-08-20T00:00:00",
+    "checkInDate": "2023-08-25T00:00:00",
+    "checkOutDate": "2023-08-30T00:00:00",
+    "totalAmount": 1250.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 22,
+    "customerID": 22,
+    "roomID": 28,
+    "bookingDate": "2023-09-01T00:00:00",
+    "checkInDate": "2023-09-05T00:00:00",
+    "checkOutDate": "2023-09-10T00:00:00",
+    "totalAmount": 2500.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 23,
+    "customerID": 23,
+    "roomID": 29,
+    "bookingDate": "2023-09-10T00:00:00",
+    "checkInDate": "2023-09-15T00:00:00",
+    "checkOutDate": "2023-09-20T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 24,
+    "customerID": 24,
+    "roomID": 30,
+    "bookingDate": "2023-09-20T00:00:00",
+    "checkInDate": "2023-09-25T00:00:00",
+    "checkOutDate": "2023-09-30T00:00:00",
+    "totalAmount": 650.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 25,
+    "customerID": 25,
+    "roomID": 31,
+    "bookingDate": "2023-10-01T00:00:00",
+    "checkInDate": "2023-10-05T00:00:00",
+    "checkOutDate": "2023-10-10T00:00:00",
+    "totalAmount": 400.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 26,
+    "customerID": 26,
+    "roomID": 33,
+    "bookingDate": "2023-10-10T00:00:00",
+    "checkInDate": "2023-10-15T00:00:00",
+    "checkOutDate": "2023-10-20T00:00:00",
+    "totalAmount": 600.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 27,
+    "customerID": 27,
+    "roomID": 35,
+    "bookingDate": "2023-10-20T00:00:00",
+    "checkInDate": "2023-10-25T00:00:00",
+    "checkOutDate": "2023-10-30T00:00:00",
+    "totalAmount": 1000.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 28,
+    "customerID": 28,
+    "roomID": 36,
+    "bookingDate": "2023-11-01T00:00:00",
+    "checkInDate": "2023-11-05T00:00:00",
+    "checkOutDate": "2023-11-10T00:00:00",
+    "totalAmount": 900.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 29,
+    "customerID": 29,
+    "roomID": 37,
+    "bookingDate": "2023-11-10T00:00:00",
+    "checkInDate": "2023-11-15T00:00:00",
+    "checkOutDate": "2023-11-20T00:00:00",
+    "totalAmount": 1250.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 30,
+    "customerID": 30,
+    "roomID": 38,
+    "bookingDate": "2023-11-20T00:00:00",
+    "checkInDate": "2023-11-25T00:00:00",
+    "checkOutDate": "2023-11-30T00:00:00",
+    "totalAmount": 2500.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 31,
+    "customerID": 31,
+    "roomID": 39,
+    "bookingDate": "2023-12-01T00:00:00",
+    "checkInDate": "2023-12-05T00:00:00",
+    "checkOutDate": "2023-12-10T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 32,
+    "customerID": 32,
+    "roomID": 40,
+    "bookingDate": "2023-12-10T00:00:00",
+    "checkInDate": "2023-12-15T00:00:00",
+    "checkOutDate": "2023-12-20T00:00:00",
+    "totalAmount": 650.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 33,
+    "customerID": 33,
+    "roomID": 41,
+    "bookingDate": "2023-12-20T00:00:00",
+    "checkInDate": "2023-12-25T00:00:00",
+    "checkOutDate": "2023-12-30T00:00:00",
+    "totalAmount": 400.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 34,
+    "customerID": 34,
+    "roomID": 43,
+    "bookingDate": "2024-01-01T00:00:00",
+    "checkInDate": "2024-01-05T00:00:00",
+    "checkOutDate": "2024-01-10T00:00:00",
+    "totalAmount": 600.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 35,
+    "customerID": 35,
+    "roomID": 45,
+    "bookingDate": "2024-01-10T00:00:00",
+    "checkInDate": "2024-01-15T00:00:00",
+    "checkOutDate": "2024-01-20T00:00:00",
+    "totalAmount": 1000.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 36,
+    "customerID": 36,
+    "roomID": 46,
+    "bookingDate": "2024-01-20T00:00:00",
+    "checkInDate": "2024-01-25T00:00:00",
+    "checkOutDate": "2024-01-30T00:00:00",
+    "totalAmount": 900.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 37,
+    "customerID": 37,
+    "roomID": 47,
+    "bookingDate": "2024-02-01T00:00:00",
+    "checkInDate": "2024-02-05T00:00:00",
+    "checkOutDate": "2024-02-10T00:00:00",
+    "totalAmount": 1250.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 38,
+    "customerID": 38,
+    "roomID": 48,
+    "bookingDate": "2024-02-10T00:00:00",
+    "checkInDate": "2024-02-15T00:00:00",
+    "checkOutDate": "2024-02-20T00:00:00",
+    "totalAmount": 2500.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 39,
+    "customerID": 39,
+    "roomID": 49,
+    "bookingDate": "2024-02-20T00:00:00",
+    "checkInDate": "2024-02-25T00:00:00",
+    "checkOutDate": "2024-02-29T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 40,
+    "customerID": 40,
+    "roomID": 50,
+    "bookingDate": "2024-03-01T00:00:00",
+    "checkInDate": "2024-03-05T00:00:00",
+    "checkOutDate": "2024-03-10T00:00:00",
+    "totalAmount": 650.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 41,
+    "customerID": 1,
+    "roomID": 2,
+    "bookingDate": "2024-03-10T00:00:00",
+    "checkInDate": "2024-03-15T00:00:00",
+    "checkOutDate": "2024-03-20T00:00:00",
+    "totalAmount": 425.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 42,
+    "customerID": 2,
+    "roomID": 4,
+    "bookingDate": "2024-03-20T00:00:00",
+    "checkInDate": "2024-03-25T00:00:00",
+    "checkOutDate": "2024-03-30T00:00:00",
+    "totalAmount": 625.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 43,
+    "customerID": 3,
+    "roomID": 6,
+    "bookingDate": "2024-04-01T00:00:00",
+    "checkInDate": "2024-04-05T00:00:00",
+    "checkOutDate": "2024-04-10T00:00:00",
+    "totalAmount": 900.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 44,
+    "customerID": 4,
+    "roomID": 8,
+    "bookingDate": "2024-04-10T00:00:00",
+    "checkInDate": "2024-04-15T00:00:00",
+    "checkOutDate": "2024-04-20T00:00:00",
+    "totalAmount": 2500.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 45,
+    "customerID": 5,
+    "roomID": 9,
+    "bookingDate": "2024-04-20T00:00:00",
+    "checkInDate": "2024-04-25T00:00:00",
+    "checkOutDate": "2024-04-30T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 46,
+    "customerID": 6,
+    "roomID": 10,
+    "bookingDate": "2024-05-01T00:00:00",
+    "checkInDate": "2024-05-05T00:00:00",
+    "checkOutDate": "2024-05-10T00:00:00",
+    "totalAmount": 650.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 47,
+    "customerID": 7,
+    "roomID": 12,
+    "bookingDate": "2024-05-10T00:00:00",
+    "checkInDate": "2024-05-15T00:00:00",
+    "checkOutDate": "2024-05-20T00:00:00",
+    "totalAmount": 425.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 48,
+    "customerID": 8,
+    "roomID": 14,
+    "bookingDate": "2024-05-20T00:00:00",
+    "checkInDate": "2024-05-25T00:00:00",
+    "checkOutDate": "2024-05-30T00:00:00",
+    "totalAmount": 625.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 49,
+    "customerID": 9,
+    "roomID": 16,
+    "bookingDate": "2024-06-01T00:00:00",
+    "checkInDate": "2024-06-05T00:00:00",
+    "checkOutDate": "2024-06-10T00:00:00",
+    "totalAmount": 900.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 50,
+    "customerID": 10,
+    "roomID": 18,
+    "bookingDate": "2024-06-10T00:00:00",
+    "checkInDate": "2024-06-15T00:00:00",
+    "checkOutDate": "2024-06-20T00:00:00",
+    "totalAmount": 2500.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 51,
+    "customerID": 11,
+    "roomID": 19,
+    "bookingDate": "2024-06-20T00:00:00",
+    "checkInDate": "2024-06-25T00:00:00",
+    "checkOutDate": "2024-06-30T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 52,
+    "customerID": 12,
+    "roomID": 20,
+    "bookingDate": "2024-07-01T00:00:00",
+    "checkInDate": "2024-07-05T00:00:00",
+    "checkOutDate": "2024-07-10T00:00:00",
+    "totalAmount": 650.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 53,
+    "customerID": 13,
+    "roomID": 22,
+    "bookingDate": "2024-07-10T00:00:00",
+    "checkInDate": "2024-07-15T00:00:00",
+    "checkOutDate": "2024-07-20T00:00:00",
+    "totalAmount": 425.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 54,
+    "customerID": 14,
+    "roomID": 24,
+    "bookingDate": "2024-07-20T00:00:00",
+    "checkInDate": "2024-07-25T00:00:00",
+    "checkOutDate": "2024-07-30T00:00:00",
+    "totalAmount": 625.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 55,
+    "customerID": 15,
+    "roomID": 26,
+    "bookingDate": "2024-08-01T00:00:00",
+    "checkInDate": "2024-08-05T00:00:00",
+    "checkOutDate": "2024-08-10T00:00:00",
+    "totalAmount": 900.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 56,
+    "customerID": 16,
+    "roomID": 28,
+    "bookingDate": "2024-08-10T00:00:00",
+    "checkInDate": "2024-08-15T00:00:00",
+    "checkOutDate": "2024-08-20T00:00:00",
+    "totalAmount": 2500.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 57,
+    "customerID": 17,
+    "roomID": 29,
+    "bookingDate": "2024-08-20T00:00:00",
+    "checkInDate": "2024-08-25T00:00:00",
+    "checkOutDate": "2024-08-30T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 58,
+    "customerID": 18,
+    "roomID": 30,
+    "bookingDate": "2024-09-01T00:00:00",
+    "checkInDate": "2024-09-05T00:00:00",
+    "checkOutDate": "2024-09-10T00:00:00",
+    "totalAmount": 650.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 59,
+    "customerID": 19,
+    "roomID": 32,
+    "bookingDate": "2024-09-10T00:00:00",
+    "checkInDate": "2024-09-15T00:00:00",
+    "checkOutDate": "2024-09-20T00:00:00",
+    "totalAmount": 425.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 60,
+    "customerID": 20,
+    "roomID": 34,
+    "bookingDate": "2024-09-20T00:00:00",
+    "checkInDate": "2024-09-25T00:00:00",
+    "checkOutDate": "2024-09-30T00:00:00",
+    "totalAmount": 625.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 61,
+    "customerID": 21,
+    "roomID": 36,
+    "bookingDate": "2024-10-01T00:00:00",
+    "checkInDate": "2024-10-05T00:00:00",
+    "checkOutDate": "2024-10-10T00:00:00",
+    "totalAmount": 900.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 62,
+    "customerID": 22,
+    "roomID": 38,
+    "bookingDate": "2024-10-10T00:00:00",
+    "checkInDate": "2024-10-15T00:00:00",
+    "checkOutDate": "2024-10-20T00:00:00",
+    "totalAmount": 2500.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 63,
+    "customerID": 23,
+    "roomID": 39,
+    "bookingDate": "2024-10-20T00:00:00",
+    "checkInDate": "2024-10-25T00:00:00",
+    "checkOutDate": "2024-10-30T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 64,
+    "customerID": 24,
+    "roomID": 40,
+    "bookingDate": "2024-11-01T00:00:00",
+    "checkInDate": "2024-11-05T00:00:00",
+    "checkOutDate": "2024-11-10T00:00:00",
+    "totalAmount": 650.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 65,
+    "customerID": 25,
+    "roomID": 42,
+    "bookingDate": "2024-11-10T00:00:00",
+    "checkInDate": "2024-11-15T00:00:00",
+    "checkOutDate": "2024-11-20T00:00:00",
+    "totalAmount": 425.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 66,
+    "customerID": 26,
+    "roomID": 44,
+    "bookingDate": "2024-11-20T00:00:00",
+    "checkInDate": "2024-11-25T00:00:00",
+    "checkOutDate": "2024-11-30T00:00:00",
+    "totalAmount": 625.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 67,
+    "customerID": 27,
+    "roomID": 46,
+    "bookingDate": "2024-12-01T00:00:00",
+    "checkInDate": "2024-12-05T00:00:00",
+    "checkOutDate": "2024-12-10T00:00:00",
+    "totalAmount": 900.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 68,
+    "customerID": 28,
+    "roomID": 48,
+    "bookingDate": "2024-12-10T00:00:00",
+    "checkInDate": "2024-12-15T00:00:00",
+    "checkOutDate": "2024-12-20T00:00:00",
+    "totalAmount": 2500.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 69,
+    "customerID": 29,
+    "roomID": 49,
+    "bookingDate": "2024-12-20T00:00:00",
+    "checkInDate": "2024-12-25T00:00:00",
+    "checkOutDate": "2024-12-30T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 70,
+    "customerID": 30,
+    "roomID": 50,
+    "bookingDate": "2025-01-01T00:00:00",
+    "checkInDate": "2025-01-05T00:00:00",
+    "checkOutDate": "2025-01-10T00:00:00",
+    "totalAmount": 650.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 71,
+    "customerID": 31,
+    "roomID": 1,
+    "bookingDate": "2025-01-10T00:00:00",
+    "checkInDate": "2025-01-15T00:00:00",
+    "checkOutDate": "2025-01-20T00:00:00",
+    "totalAmount": 400.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 72,
+    "customerID": 32,
+    "roomID": 3,
+    "bookingDate": "2025-01-20T00:00:00",
+    "checkInDate": "2025-01-25T00:00:00",
+    "checkOutDate": "2025-01-30T00:00:00",
+    "totalAmount": 600.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 73,
+    "customerID": 33,
+    "roomID": 5,
+    "bookingDate": "2025-02-01T00:00:00",
+    "checkInDate": "2025-02-05T00:00:00",
+    "checkOutDate": "2025-02-10T00:00:00",
+    "totalAmount": 1000.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 74,
+    "customerID": 34,
+    "roomID": 7,
+    "bookingDate": "2025-02-10T00:00:00",
+    "checkInDate": "2025-02-15T00:00:00",
+    "checkOutDate": "2025-02-20T00:00:00",
+    "totalAmount": 1250.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 75,
+    "customerID": 35,
+    "roomID": 9,
+    "bookingDate": "2025-02-20T00:00:00",
+    "checkInDate": "2025-02-25T00:00:00",
+    "checkOutDate": "2025-02-28T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 76,
+    "customerID": 36,
+    "roomID": 11,
+    "bookingDate": "2025-03-01T00:00:00",
+    "checkInDate": "2025-03-05T00:00:00",
+    "checkOutDate": "2025-03-10T00:00:00",
+    "totalAmount": 400.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 77,
+    "customerID": 37,
+    "roomID": 13,
+    "bookingDate": "2025-03-10T00:00:00",
+    "checkInDate": "2025-03-15T00:00:00",
+    "checkOutDate": "2025-03-20T00:00:00",
+    "totalAmount": 600.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 78,
+    "customerID": 38,
+    "roomID": 15,
+    "bookingDate": "2025-03-20T00:00:00",
+    "checkInDate": "2025-03-25T00:00:00",
+    "checkOutDate": "2025-03-30T00:00:00",
+    "totalAmount": 1000.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 79,
+    "customerID": 39,
+    "roomID": 17,
+    "bookingDate": "2025-04-01T00:00:00",
+    "checkInDate": "2025-04-05T00:00:00",
+    "checkOutDate": "2025-04-10T00:00:00",
+    "totalAmount": 1250.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 80,
+    "customerID": 40,
+    "roomID": 19,
+    "bookingDate": "2025-04-10T00:00:00",
+    "checkInDate": "2025-04-15T00:00:00",
+    "checkOutDate": "2025-04-20T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 81,
+    "customerID": 41,
+    "roomID": 21,
+    "bookingDate": "2025-04-20T00:00:00",
+    "checkInDate": "2025-04-25T00:00:00",
+    "checkOutDate": "2025-04-30T00:00:00",
+    "totalAmount": 400.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 82,
+    "customerID": 42,
+    "roomID": 23,
+    "bookingDate": "2025-05-01T00:00:00",
+    "checkInDate": "2025-05-05T00:00:00",
+    "checkOutDate": "2025-05-10T00:00:00",
+    "totalAmount": 600.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 83,
+    "customerID": 43,
+    "roomID": 25,
+    "bookingDate": "2025-05-10T00:00:00",
+    "checkInDate": "2025-05-15T00:00:00",
+    "checkOutDate": "2025-05-20T00:00:00",
+    "totalAmount": 1000.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 84,
+    "customerID": 44,
+    "roomID": 27,
+    "bookingDate": "2025-05-20T00:00:00",
+    "checkInDate": "2025-05-25T00:00:00",
+    "checkOutDate": "2025-05-30T00:00:00",
+    "totalAmount": 1250.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 85,
+    "customerID": 45,
+    "roomID": 29,
+    "bookingDate": "2025-06-01T00:00:00",
+    "checkInDate": "2025-06-05T00:00:00",
+    "checkOutDate": "2025-06-10T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 86,
+    "customerID": 46,
+    "roomID": 31,
+    "bookingDate": "2025-06-10T00:00:00",
+    "checkInDate": "2025-06-15T00:00:00",
+    "checkOutDate": "2025-06-20T00:00:00",
+    "totalAmount": 400.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 87,
+    "customerID": 47,
+    "roomID": 33,
+    "bookingDate": "2025-06-20T00:00:00",
+    "checkInDate": "2025-06-25T00:00:00",
+    "checkOutDate": "2025-06-30T00:00:00",
+    "totalAmount": 600.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 88,
+    "customerID": 48,
+    "roomID": 35,
+    "bookingDate": "2025-07-01T00:00:00",
+    "checkInDate": "2025-07-05T00:00:00",
+    "checkOutDate": "2025-07-10T00:00:00",
+    "totalAmount": 1000.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 89,
+    "customerID": 49,
+    "roomID": 37,
+    "bookingDate": "2025-07-10T00:00:00",
+    "checkInDate": "2025-07-15T00:00:00",
+    "checkOutDate": "2025-07-20T00:00:00",
+    "totalAmount": 1250.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 90,
+    "customerID": 50,
+    "roomID": 39,
+    "bookingDate": "2025-07-20T00:00:00",
+    "checkInDate": "2025-07-25T00:00:00",
+    "checkOutDate": "2025-07-30T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 91,
+    "customerID": 1,
+    "roomID": 41,
+    "bookingDate": "2025-08-01T00:00:00",
+    "checkInDate": "2025-08-05T00:00:00",
+    "checkOutDate": "2025-08-10T00:00:00",
+    "totalAmount": 400.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 92,
+    "customerID": 2,
+    "roomID": 43,
+    "bookingDate": "2025-08-10T00:00:00",
+    "checkInDate": "2025-08-15T00:00:00",
+    "checkOutDate": "2025-08-20T00:00:00",
+    "totalAmount": 600.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 93,
+    "customerID": 3,
+    "roomID": 45,
+    "bookingDate": "2025-08-20T00:00:00",
+    "checkInDate": "2025-08-25T00:00:00",
+    "checkOutDate": "2025-08-30T00:00:00",
+    "totalAmount": 1000.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 94,
+    "customerID": 4,
+    "roomID": 47,
+    "bookingDate": "2025-09-01T00:00:00",
+    "checkInDate": "2025-09-05T00:00:00",
+    "checkOutDate": "2025-09-10T00:00:00",
+    "totalAmount": 1250.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 95,
+    "customerID": 5,
+    "roomID": 49,
+    "bookingDate": "2025-09-10T00:00:00",
+    "checkInDate": "2025-09-15T00:00:00",
+    "checkOutDate": "2025-09-20T00:00:00",
+    "totalAmount": 750.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 96,
+    "customerID": 6,
+    "roomID": 2,
+    "bookingDate": "2025-09-20T00:00:00",
+    "checkInDate": "2025-09-25T00:00:00",
+    "checkOutDate": "2025-09-30T00:00:00",
+    "totalAmount": 425.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 97,
+    "customerID": 7,
+    "roomID": 4,
+    "bookingDate": "2025-10-01T00:00:00",
+    "checkInDate": "2025-10-05T00:00:00",
+    "checkOutDate": "2025-10-10T00:00:00",
+    "totalAmount": 625.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 98,
+    "customerID": 8,
+    "roomID": 6,
+    "bookingDate": "2025-10-10T00:00:00",
+    "checkInDate": "2025-10-15T00:00:00",
+    "checkOutDate": "2025-10-20T00:00:00",
+    "totalAmount": 900.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 99,
+    "customerID": 9,
+    "roomID": 8,
+    "bookingDate": "2025-10-20T00:00:00",
+    "checkInDate": "2025-10-25T00:00:00",
+    "checkOutDate": "2025-10-30T00:00:00",
+    "totalAmount": 2500.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 100,
+    "customerID": 10,
+    "roomID": 10,
+    "bookingDate": "2025-11-01T00:00:00",
+    "checkInDate": "2025-11-05T00:00:00",
+    "checkOutDate": "2025-11-10T00:00:00",
+    "totalAmount": 650.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 101,
+    "customerID": 1,
+    "roomID": 1,
+    "bookingDate": "2025-01-10T00:00:00",
+    "checkInDate": "2025-01-14T00:00:00",
+    "checkOutDate": "2025-01-18T00:00:00",
+    "totalAmount": 400.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 102,
+    "customerID": 2,
+    "roomID": 2,
+    "bookingDate": "2025-01-12T00:00:00",
+    "checkInDate": "2025-01-15T00:00:00",
+    "checkOutDate": "2025-01-20T00:00:00",
+    "totalAmount": 500.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 103,
+    "customerID": 3,
+    "roomID": 3,
+    "bookingDate": "2025-01-13T00:00:00",
+    "checkInDate": "2025-01-16T00:00:00",
+    "checkOutDate": "2025-01-22T00:00:00",
+    "totalAmount": 600.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 104,
+    "customerID": 4,
+    "roomID": 4,
+    "bookingDate": "2025-01-14T00:00:00",
+    "checkInDate": "2025-01-17T00:00:00",
+    "checkOutDate": "2025-01-21T00:00:00",
+    "totalAmount": 700.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 105,
+    "customerID": 5,
+    "roomID": 5,
+    "bookingDate": "2025-10-12T00:00:00",
+    "checkInDate": "2025-10-14T00:00:00",
+    "checkOutDate": "2025-10-16T00:00:00",
+    "totalAmount": 300.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 106,
+    "customerID": 6,
+    "roomID": 6,
+    "bookingDate": "2025-10-11T00:00:00",
+    "checkInDate": "2025-10-13T00:00:00",
+    "checkOutDate": "2025-10-15T00:00:00",
+    "totalAmount": 400.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 107,
+    "customerID": 7,
+    "roomID": 7,
+    "bookingDate": "2025-10-10T00:00:00",
+    "checkInDate": "2025-10-12T00:00:00",
+    "checkOutDate": "2025-10-14T00:00:00",
+    "totalAmount": 500.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 108,
+    "customerID": 8,
+    "roomID": 8,
+    "bookingDate": "2025-10-13T00:00:00",
+    "checkInDate": "2025-10-14T00:00:00",
+    "checkOutDate": "2025-10-17T00:00:00",
+    "totalAmount": 600.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 109,
+    "customerID": 9,
+    "roomID": 9,
+    "bookingDate": "2025-10-12T00:00:00",
+    "checkInDate": "2025-10-13T00:00:00",
+    "checkOutDate": "2025-10-15T00:00:00",
+    "totalAmount": 700.00,
+    "bookingStatus": 1
+  },
+  {
+    "bookingID": 110,
+    "customerID": 10,
+    "roomID": 10,
+    "bookingDate": "2025-10-11T00:00:00",
+    "checkInDate": "2025-10-12T00:00:00",
+    "checkOutDate": "2025-10-14T00:00:00",
+    "totalAmount": 800.00,
+    "bookingStatus": 1
+  }
+]
