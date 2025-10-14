@@ -1,0 +1,452 @@
+[
+  {
+    "roomID": 1,
+    "roomNumber": "101",
+    "roomDescription": "Standard single room with city view",
+    "roomMaxCapacity": 1,
+    "roomStatus": 1,
+    "roomPricePerDate": 80.00,
+    "roomTypeID": 1
+  },
+  {
+    "roomID": 2,
+    "roomNumber": "102",
+    "roomDescription": "Standard single room with garden view",
+    "roomMaxCapacity": 1,
+    "roomStatus": 1,
+    "roomPricePerDate": 85.00,
+    "roomTypeID": 1
+  },
+  {
+    "roomID": 3,
+    "roomNumber": "103",
+    "roomDescription": "Standard double room with city view",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 120.00,
+    "roomTypeID": 2
+  },
+  {
+    "roomID": 4,
+    "roomNumber": "104",
+    "roomDescription": "Standard double room with garden view",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 125.00,
+    "roomTypeID": 2
+  },
+  {
+    "roomID": 5,
+    "roomNumber": "105",
+    "roomDescription": "Deluxe suite with separate living area",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 200.00,
+    "roomTypeID": 3
+  },
+  {
+    "roomID": 6,
+    "roomNumber": "106",
+    "roomDescription": "Family room with extra beds",
+    "roomMaxCapacity": 4,
+    "roomStatus": 1,
+    "roomPricePerDate": 180.00,
+    "roomTypeID": 4
+  },
+  {
+    "roomID": 7,
+    "roomNumber": "107",
+    "roomDescription": "Executive suite with business facilities",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 250.00,
+    "roomTypeID": 5
+  },
+  {
+    "roomID": 8,
+    "roomNumber": "108",
+    "roomDescription": "Presidential suite with panoramic views",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 500.00,
+    "roomTypeID": 6
+  },
+  {
+    "roomID": 9,
+    "roomNumber": "109",
+    "roomDescription": "Ocean view room with balcony",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 150.00,
+    "roomTypeID": 7
+  },
+  {
+    "roomID": 10,
+    "roomNumber": "110",
+    "roomDescription": "Garden view room with terrace",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 130.00,
+    "roomTypeID": 8
+  },
+  {
+    "roomID": 11,
+    "roomNumber": "201",
+    "roomDescription": "Standard single room with city view",
+    "roomMaxCapacity": 1,
+    "roomStatus": 1,
+    "roomPricePerDate": 80.00,
+    "roomTypeID": 1
+  },
+  {
+    "roomID": 12,
+    "roomNumber": "202",
+    "roomDescription": "Standard single room with garden view",
+    "roomMaxCapacity": 1,
+    "roomStatus": 1,
+    "roomPricePerDate": 85.00,
+    "roomTypeID": 1
+  },
+  {
+    "roomID": 13,
+    "roomNumber": "203",
+    "roomDescription": "Standard double room with city view",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 120.00,
+    "roomTypeID": 2
+  },
+  {
+    "roomID": 14,
+    "roomNumber": "204",
+    "roomDescription": "Standard double room with garden view",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 125.00,
+    "roomTypeID": 2
+  },
+  {
+    "roomID": 15,
+    "roomNumber": "205",
+    "roomDescription": "Deluxe suite with separate living area",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 200.00,
+    "roomTypeID": 3
+  },
+  {
+    "roomID": 16,
+    "roomNumber": "206",
+    "roomDescription": "Family room with extra beds",
+    "roomMaxCapacity": 4,
+    "roomStatus": 1,
+    "roomPricePerDate": 180.00,
+    "roomTypeID": 4
+  },
+  {
+    "roomID": 17,
+    "roomNumber": "207",
+    "roomDescription": "Executive suite with business facilities",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 250.00,
+    "roomTypeID": 5
+  },
+  {
+    "roomID": 18,
+    "roomNumber": "208",
+    "roomDescription": "Presidential suite with panoramic views",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 500.00,
+    "roomTypeID": 6
+  },
+  {
+    "roomID": 19,
+    "roomNumber": "209",
+    "roomDescription": "Ocean view room with balcony",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 150.00,
+    "roomTypeID": 7
+  },
+  {
+    "roomID": 20,
+    "roomNumber": "210",
+    "roomDescription": "Garden view room with terrace",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 130.00,
+    "roomTypeID": 8
+  },
+  {
+    "roomID": 21,
+    "roomNumber": "301",
+    "roomDescription": "Standard single room with city view",
+    "roomMaxCapacity": 1,
+    "roomStatus": 1,
+    "roomPricePerDate": 80.00,
+    "roomTypeID": 1
+  },
+  {
+    "roomID": 22,
+    "roomNumber": "302",
+    "roomDescription": "Standard single room with garden view",
+    "roomMaxCapacity": 1,
+    "roomStatus": 1,
+    "roomPricePerDate": 85.00,
+    "roomTypeID": 1
+  },
+  {
+    "roomID": 23,
+    "roomNumber": "303",
+    "roomDescription": "Standard double room with city view",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 120.00,
+    "roomTypeID": 2
+  },
+  {
+    "roomID": 24,
+    "roomNumber": "304",
+    "roomDescription": "Standard double room with garden view",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 125.00,
+    "roomTypeID": 2
+  },
+  {
+    "roomID": 25,
+    "roomNumber": "305",
+    "roomDescription": "Deluxe suite with separate living area",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 200.00,
+    "roomTypeID": 3
+  },
+  {
+    "roomID": 26,
+    "roomNumber": "306",
+    "roomDescription": "Family room with extra beds",
+    "roomMaxCapacity": 4,
+    "roomStatus": 1,
+    "roomPricePerDate": 180.00,
+    "roomTypeID": 4
+  },
+  {
+    "roomID": 27,
+    "roomNumber": "307",
+    "roomDescription": "Executive suite with business facilities",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 250.00,
+    "roomTypeID": 5
+  },
+  {
+    "roomID": 28,
+    "roomNumber": "308",
+    "roomDescription": "Presidential suite with panoramic views",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 500.00,
+    "roomTypeID": 6
+  },
+  {
+    "roomID": 29,
+    "roomNumber": "309",
+    "roomDescription": "Ocean view room with balcony",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 150.00,
+    "roomTypeID": 7
+  },
+  {
+    "roomID": 30,
+    "roomNumber": "310",
+    "roomDescription": "Garden view room with terrace",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 130.00,
+    "roomTypeID": 8
+  },
+  {
+    "roomID": 31,
+    "roomNumber": "401",
+    "roomDescription": "Standard single room with city view",
+    "roomMaxCapacity": 1,
+    "roomStatus": 1,
+    "roomPricePerDate": 80.00,
+    "roomTypeID": 1
+  },
+  {
+    "roomID": 32,
+    "roomNumber": "402",
+    "roomDescription": "Standard single room with garden view",
+    "roomMaxCapacity": 1,
+    "roomStatus": 1,
+    "roomPricePerDate": 85.00,
+    "roomTypeID": 1
+  },
+  {
+    "roomID": 33,
+    "roomNumber": "403",
+    "roomDescription": "Standard double room with city view",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 120.00,
+    "roomTypeID": 2
+  },
+  {
+    "roomID": 34,
+    "roomNumber": "404",
+    "roomDescription": "Standard double room with garden view",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 125.00,
+    "roomTypeID": 2
+  },
+  {
+    "roomID": 35,
+    "roomNumber": "405",
+    "roomDescription": "Deluxe suite with separate living area",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 200.00,
+    "roomTypeID": 3
+  },
+  {
+    "roomID": 36,
+    "roomNumber": "406",
+    "roomDescription": "Family room with extra beds",
+    "roomMaxCapacity": 4,
+    "roomStatus": 1,
+    "roomPricePerDate": 180.00,
+    "roomTypeID": 4
+  },
+  {
+    "roomID": 37,
+    "roomNumber": "407",
+    "roomDescription": "Executive suite with business facilities",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 250.00,
+    "roomTypeID": 5
+  },
+  {
+    "roomID": 38,
+    "roomNumber": "408",
+    "roomDescription": "Presidential suite with panoramic views",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 500.00,
+    "roomTypeID": 6
+  },
+  {
+    "roomID": 39,
+    "roomNumber": "409",
+    "roomDescription": "Ocean view room with balcony",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 150.00,
+    "roomTypeID": 7
+  },
+  {
+    "roomID": 40,
+    "roomNumber": "410",
+    "roomDescription": "Garden view room with terrace",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 130.00,
+    "roomTypeID": 8
+  },
+  {
+    "roomID": 41,
+    "roomNumber": "501",
+    "roomDescription": "Standard single room with city view",
+    "roomMaxCapacity": 1,
+    "roomStatus": 1,
+    "roomPricePerDate": 80.00,
+    "roomTypeID": 1
+  },
+  {
+    "roomID": 42,
+    "roomNumber": "502",
+    "roomDescription": "Standard single room with garden view",
+    "roomMaxCapacity": 1,
+    "roomStatus": 1,
+    "roomPricePerDate": 85.00,
+    "roomTypeID": 1
+  },
+  {
+    "roomID": 43,
+    "roomNumber": "503",
+    "roomDescription": "Standard double room with city view",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 120.00,
+    "roomTypeID": 2
+  },
+  {
+    "roomID": 44,
+    "roomNumber": "504",
+    "roomDescription": "Standard double room with garden view",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 125.00,
+    "roomTypeID": 2
+  },
+  {
+    "roomID": 45,
+    "roomNumber": "505",
+    "roomDescription": "Deluxe suite with separate living area",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 200.00,
+    "roomTypeID": 3
+  },
+  {
+    "roomID": 46,
+    "roomNumber": "506",
+    "roomDescription": "Family room with extra beds",
+    "roomMaxCapacity": 4,
+    "roomStatus": 1,
+    "roomPricePerDate": 180.00,
+    "roomTypeID": 4
+  },
+  {
+    "roomID": 47,
+    "roomNumber": "507",
+    "roomDescription": "Executive suite with business facilities",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 250.00,
+    "roomTypeID": 5
+  },
+  {
+    "roomID": 48,
+    "roomNumber": "508",
+    "roomDescription": "Presidential suite with panoramic views",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 500.00,
+    "roomTypeID": 6
+  },
+  {
+    "roomID": 49,
+    "roomNumber": "509",
+    "roomDescription": "Ocean view room with balcony",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 150.00,
+    "roomTypeID": 7
+  },
+  {
+    "roomID": 50,
+    "roomNumber": "510",
+    "roomDescription": "Garden view room with terrace",
+    "roomMaxCapacity": 2,
+    "roomStatus": 1,
+    "roomPricePerDate": 130.00,
+    "roomTypeID": 8
+  }
+]
