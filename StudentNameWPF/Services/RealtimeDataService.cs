@@ -88,8 +88,8 @@ namespace StudentNameWPF.Services
                 System.Diagnostics.Debug.WriteLine($"  - Customers: {customers.Count}");
                 System.Diagnostics.Debug.WriteLine($"  - Bookings: {bookings.Count}");
                 System.Diagnostics.Debug.WriteLine($"  - Rooms: {rooms.Count}");
-                System.Diagnostics.Debug.WriteLine($"  - Total Revenue: ${totalRevenue:N2}");
-                System.Diagnostics.Debug.WriteLine($"  - Average Booking Value: ${averageBookingValue:N2}");
+                System.Diagnostics.Debug.WriteLine($"  - Total Revenue: ${totalRevenue:0}");
+                System.Diagnostics.Debug.WriteLine($"  - Average Booking Value: ${averageBookingValue:0}");
                 
                 var realtimeData = new RealtimeData
                 {

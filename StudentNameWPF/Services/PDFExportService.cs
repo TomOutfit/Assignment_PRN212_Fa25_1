@@ -110,13 +110,13 @@ namespace StudentNameWPF.Services
 
             var summaryTable = new Table(2).UseAllAvailableWidth();
             summaryTable.AddCell(new Cell().Add(new Paragraph("Total Revenue").SetFont(titleFont)).SetBackgroundColor(ColorConstants.LIGHT_GRAY));
-            summaryTable.AddCell(new Cell().Add(new Paragraph($"${bookings?.Sum(b => b.TotalAmount) ?? 0:N2}").SetFont(normalFont)));
+            summaryTable.AddCell(new Cell().Add(new Paragraph($"${bookings?.Sum(b => b.TotalAmount) ?? 0:0}").SetFont(normalFont)));
 
             summaryTable.AddCell(new Cell().Add(new Paragraph("Total Bookings").SetFont(titleFont)).SetBackgroundColor(ColorConstants.LIGHT_GRAY));
             summaryTable.AddCell(new Cell().Add(new Paragraph($"{bookings?.Count ?? 0:N0}").SetFont(normalFont)));
 
             summaryTable.AddCell(new Cell().Add(new Paragraph("Average Booking Value").SetFont(titleFont)).SetBackgroundColor(ColorConstants.LIGHT_GRAY));
-            summaryTable.AddCell(new Cell().Add(new Paragraph($"${bookings?.Average(b => b.TotalAmount) ?? 0:N2}").SetFont(normalFont)));
+            summaryTable.AddCell(new Cell().Add(new Paragraph($"${bookings?.Average(b => b.TotalAmount) ?? 0:0}").SetFont(normalFont)));
 
             summaryTable.AddCell(new Cell().Add(new Paragraph("Total Customers").SetFont(titleFont)).SetBackgroundColor(ColorConstants.LIGHT_GRAY));
             summaryTable.AddCell(new Cell().Add(new Paragraph($"{customers?.Count ?? 0:N0}").SetFont(normalFont)));
@@ -157,9 +157,9 @@ namespace StudentNameWPF.Services
             {
                 var avgPerBooking = month.Revenue / month.Bookings;
                 revenueTable.AddCell(new Cell().Add(new Paragraph(month.Month).SetFont(normalFont)));
-                revenueTable.AddCell(new Cell().Add(new Paragraph($"${month.Revenue:N2}").SetFont(normalFont)));
+                revenueTable.AddCell(new Cell().Add(new Paragraph($"${month.Revenue:0}").SetFont(normalFont)));
                 revenueTable.AddCell(new Cell().Add(new Paragraph(month.Bookings.ToString()).SetFont(normalFont)));
-                revenueTable.AddCell(new Cell().Add(new Paragraph($"${avgPerBooking:N2}").SetFont(normalFont)));
+                revenueTable.AddCell(new Cell().Add(new Paragraph($"${avgPerBooking:0}").SetFont(normalFont)));
             }
             
             document.Add(revenueTable);
@@ -192,9 +192,9 @@ namespace StudentNameWPF.Services
             {
                 var avgPerBooking = customer.TotalSpent / customer.BookingCount;
                 customerTable.AddCell(new Cell().Add(new Paragraph(customer.CustomerName).SetFont(normalFont)));
-                customerTable.AddCell(new Cell().Add(new Paragraph($"${customer.TotalSpent:N2}").SetFont(normalFont)));
+                customerTable.AddCell(new Cell().Add(new Paragraph($"${customer.TotalSpent:0}").SetFont(normalFont)));
                 customerTable.AddCell(new Cell().Add(new Paragraph(customer.BookingCount.ToString()).SetFont(normalFont)));
-                customerTable.AddCell(new Cell().Add(new Paragraph($"${avgPerBooking:N2}").SetFont(normalFont)));
+                customerTable.AddCell(new Cell().Add(new Paragraph($"${avgPerBooking:0}").SetFont(normalFont)));
             }
 
             document.Add(customerTable);
@@ -227,9 +227,9 @@ namespace StudentNameWPF.Services
             {
                 var avgPerBooking = room.Revenue / room.BookingCount;
                 roomTable.AddCell(new Cell().Add(new Paragraph(room.RoomNumber).SetFont(normalFont)));
-                roomTable.AddCell(new Cell().Add(new Paragraph($"${room.Revenue:N2}").SetFont(normalFont)));
+                roomTable.AddCell(new Cell().Add(new Paragraph($"${room.Revenue:0}").SetFont(normalFont)));
                 roomTable.AddCell(new Cell().Add(new Paragraph(room.BookingCount.ToString()).SetFont(normalFont)));
-                roomTable.AddCell(new Cell().Add(new Paragraph($"${avgPerBooking:N2}").SetFont(normalFont)));
+                roomTable.AddCell(new Cell().Add(new Paragraph($"${avgPerBooking:0}").SetFont(normalFont)));
             }
 
             document.Add(roomTable);
@@ -315,9 +315,9 @@ namespace StudentNameWPF.Services
             // Executive Summary
             html.AppendLine("<div class='summary'>");
             html.AppendLine("<h2>📊 Executive Summary</h2>");
-            html.AppendLine($"<p><strong>Total Revenue:</strong> ${bookings.Sum(b => b.TotalAmount):N2}</p>");
+            html.AppendLine($"<p><strong>Total Revenue:</strong> ${bookings.Sum(b => b.TotalAmount):0}</p>");
             html.AppendLine($"<p><strong>Total Bookings:</strong> {bookings.Count:N0}</p>");
-            html.AppendLine($"<p><strong>Average Booking Value:</strong> ${bookings.Average(b => b.TotalAmount):N2}</p>");
+            html.AppendLine($"<p><strong>Average Booking Value:</strong> ${bookings.Average(b => b.TotalAmount):0}</p>");
             html.AppendLine($"<p><strong>Total Customers:</strong> {customers.Count:N0}</p>");
             html.AppendLine($"<p><strong>Total Rooms:</strong> {rooms.Count:N0}</p>");
             html.AppendLine("</div>");

@@ -125,9 +125,9 @@ namespace StudentNameWPF.ViewModels
                 var customer = await _authService.AuthenticateAsync(Email, Password);
                 if (customer != null)
                 {
-                    // Debug: Show user info
-                    MessageBox.Show($"Login successful!\nUser: {customer.CustomerFullName}\nEmail: {customer.EmailAddress}\nIsAdmin: {customer.IsAdmin}", 
-                        "Debug Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    // Welcome message
+                    MessageBox.Show($"Welcome to our Hotel System !\n\nUser: {customer.CustomerFullName}\nEmail: {customer.EmailAddress}\nIsAdmin: {customer.IsAdmin}", 
+                        "Welcome", MessageBoxButton.OK, MessageBoxImage.Information);
                     LoginSuccessful?.Invoke(this, customer);
                 }
                 else
