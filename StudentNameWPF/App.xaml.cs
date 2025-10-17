@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using OfficeOpenXml;
 
 namespace StudentNameWPF;
 
@@ -14,6 +15,21 @@ public partial class App : Application
         try
         {
             System.Diagnostics.Debug.WriteLine("Application starting up...");
+            
+            // Set EPPlus license for non-commercial use
+            // Note: EPPlus 8+ requires license to be set before any ExcelPackage usage
+            try
+            {
+#pragma warning disable CS0618 // Type or member is obsolete
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+#pragma warning restore CS0618 // Type or member is obsolete
+                System.Diagnostics.Debug.WriteLine("EPPlus license set to NonCommercial");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Failed to set EPPlus license: {ex.Message}");
+            }
+            
             base.OnStartup(e);
             
             // Create and show the LoginWindow

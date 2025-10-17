@@ -6,6 +6,7 @@ using StudentNameWPF.Models;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Linq;
+using Microsoft.VisualBasic;
 
 namespace StudentNameWPF.ViewModels
 {
@@ -28,6 +29,10 @@ namespace StudentNameWPF.ViewModels
         private ObservableCollection<BookingDisplayModel> _bookings = new();
         private Customer? _selectedCustomer;
         private RoomInformation? _selectedRoom;
+        private string _customerSearchText = string.Empty;
+        private string _roomSearchText = string.Empty;
+        private ObservableCollection<Customer> _filteredCustomers = new();
+        private ObservableCollection<RoomInformation> _filteredRooms = new();
 
         public Customer CurrentUser
         {
@@ -77,6 +82,38 @@ namespace StudentNameWPF.ViewModels
             set => SetProperty(ref _selectedRoom, value);
         }
 
+        public string CustomerSearchText
+        {
+            get => _customerSearchText;
+            set
+            {
+                SetProperty(ref _customerSearchText, value);
+                FilterCustomers();
+            }
+        }
+
+        public string RoomSearchText
+        {
+            get => _roomSearchText;
+            set
+            {
+                SetProperty(ref _roomSearchText, value);
+                FilterRooms();
+            }
+        }
+
+        public ObservableCollection<Customer> FilteredCustomers
+        {
+            get => _filteredCustomers;
+            set => SetProperty(ref _filteredCustomers, value);
+        }
+
+        public ObservableCollection<RoomInformation> FilteredRooms
+        {
+            get => _filteredRooms;
+            set => SetProperty(ref _filteredRooms, value);
+        }
+
         // Commands
         public RelayCommand<string> NavigateCommand { get; }
         public RelayCommand AddCustomerCommand { get; }
@@ -89,6 +126,12 @@ namespace StudentNameWPF.ViewModels
         public RelayCommand ExportChartCommand { get; }
         public RelayCommand ExportPDFCommand { get; }
         public RelayCommand ExportExcelCommand { get; }
+        public RelayCommand SearchCustomersCommand { get; }
+        public RelayCommand ClearCustomerSearchCommand { get; }
+        public RelayCommand SearchRoomsCommand { get; }
+        public RelayCommand ClearRoomSearchCommand { get; }
+        public RelayCommand EditProfileCommand { get; }
+        public RelayCommand ChangePasswordCommand { get; }
         public RelayCommand LogoutCommand { get; set; } = null!;
 
         public MainViewModel(Customer currentUser)
@@ -122,6 +165,12 @@ namespace StudentNameWPF.ViewModels
             ExportChartCommand = new RelayCommand(ExportChart);
             ExportPDFCommand = new RelayCommand(ExportPDF);
             ExportExcelCommand = new RelayCommand(ExportExcel);
+            SearchCustomersCommand = new RelayCommand(SearchCustomers);
+            ClearCustomerSearchCommand = new RelayCommand(ClearCustomerSearch);
+            SearchRoomsCommand = new RelayCommand(SearchRooms);
+            ClearRoomSearchCommand = new RelayCommand(ClearRoomSearch);
+            EditProfileCommand = new RelayCommand(EditProfile);
+            ChangePasswordCommand = new RelayCommand(ChangePassword);
 
             // Start realtime data service
             _realtimeDataService.StartRealtimeUpdates();
@@ -138,9 +187,11 @@ namespace StudentNameWPF.ViewModels
                 {
                     var customers = await _customerService.GetActiveCustomersAsync();
                     Customers = new ObservableCollection<Customer>(customers);
+                    FilteredCustomers = new ObservableCollection<Customer>(customers);
 
                     var rooms = await _roomService.GetActiveRoomsAsync();
                     Rooms = new ObservableCollection<RoomInformation>(rooms);
+                    FilteredRooms = new ObservableCollection<RoomInformation>(rooms);
 
                     var roomTypes = await _roomService.GetAllRoomTypesAsync();
                     RoomTypes = new ObservableCollection<RoomType>(roomTypes);
@@ -161,6 +212,11 @@ namespace StudentNameWPF.ViewModels
                 }
                 else
                 {
+                    // Load rooms data for regular users to display room names in bookings
+                    var rooms = await _roomService.GetActiveRoomsAsync();
+                    Rooms = new ObservableCollection<RoomInformation>(rooms);
+                    FilteredRooms = new ObservableCollection<RoomInformation>(rooms);
+                    
                     // Load only customer's bookings for regular users
                     var bookings = await _bookingService.GetBookingsByCustomerIdAsync(CurrentUser.CustomerID);
                     var bookingDisplayModels = bookings.Select(booking => 
@@ -200,9 +256,10 @@ namespace StudentNameWPF.ViewModels
                     var newCustomer = dialog.GetCustomer();
                     if (newCustomer != null)
                     {
-                        await _customerService.AddCustomerAsync(newCustomer);
-                        await LoadDataAsync();
-                        await _realtimeDataService.ForceUpdateAsync();
+                       await _customerService.AddCustomerAsync(newCustomer);
+                       await LoadDataAsync();
+                       FilterCustomers(); // Refresh filtered customers
+                       await _realtimeDataService.ForceUpdateAsync();
                         MessageBox.Show("Customer added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
@@ -241,6 +298,7 @@ namespace StudentNameWPF.ViewModels
                         System.Diagnostics.Debug.WriteLine($"EditCustomer: Updating customer {updatedCustomer.CustomerFullName}");
                         await _customerService.UpdateCustomerAsync(updatedCustomer);
                         await LoadDataAsync();
+                        FilterCustomers(); // Refresh filtered customers
                         await _realtimeDataService.ForceUpdateAsync();
                         MessageBox.Show("Customer updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
@@ -274,6 +332,7 @@ namespace StudentNameWPF.ViewModels
                 {
                     await _customerService.DeleteCustomerAsync(SelectedCustomer.CustomerID);
                     await LoadDataAsync();
+                    FilterCustomers(); // Refresh filtered customers
                     await _realtimeDataService.ForceUpdateAsync();
                     MessageBox.Show("Customer deleted successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -300,6 +359,7 @@ namespace StudentNameWPF.ViewModels
                     {
                         await _roomService.AddRoomAsync(newRoom);
                         await LoadDataAsync();
+                        FilterRooms(); // Refresh filtered rooms
                         await _realtimeDataService.ForceUpdateAsync();
                         MessageBox.Show("Room added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
@@ -329,6 +389,7 @@ namespace StudentNameWPF.ViewModels
                     {
                         await _roomService.UpdateRoomAsync(updatedRoom);
                         await LoadDataAsync();
+                        FilterRooms(); // Refresh filtered rooms
                         await _realtimeDataService.ForceUpdateAsync();
                         MessageBox.Show("Room updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
@@ -353,6 +414,7 @@ namespace StudentNameWPF.ViewModels
                 {
                     await _roomService.DeleteRoomAsync(SelectedRoom.RoomID);
                     await LoadDataAsync();
+                    FilterRooms(); // Refresh filtered rooms
                     await _realtimeDataService.ForceUpdateAsync();
                     MessageBox.Show("Room deleted successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -586,13 +648,7 @@ namespace StudentNameWPF.ViewModels
                         saveFileDialog.FileName
                     );
                     
-                    var customerAnalysisPath = await _excelExportService.ExportCustomerAnalysisAsync(
-                        customersList, 
-                        bookingsForExport, 
-                        "CustomerAnalysis"
-                    );
-                    
-                    MessageBox.Show($"📋 Excel files exported successfully!\n\nFiles saved to:\n• Main Report: {filePath}\n• Customer Analysis: {customerAnalysisPath}\n\nThese are CSV files that can be opened in Excel or Google Sheets.", 
+                    MessageBox.Show($"📋 Excel file exported successfully!\n\nFile saved to: {filePath}\n\nThis is a CSV file that can be opened in Excel or Google Sheets.", 
                         "Excel Export Complete", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
@@ -602,5 +658,176 @@ namespace StudentNameWPF.ViewModels
                     "Export Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        #region Search Methods
+
+        private void FilterCustomers()
+        {
+            if (string.IsNullOrWhiteSpace(CustomerSearchText))
+            {
+                FilteredCustomers = new ObservableCollection<Customer>(Customers);
+            }
+            else
+            {
+                var searchTerm = CustomerSearchText.ToLower();
+                var filtered = Customers.Where(c => 
+                    c.CustomerFullName.ToLower().Contains(searchTerm) ||
+                    c.EmailAddress.ToLower().Contains(searchTerm) ||
+                    c.Telephone.Contains(searchTerm)
+                ).ToList();
+                
+                FilteredCustomers = new ObservableCollection<Customer>(filtered);
+            }
+        }
+
+        private void FilterRooms()
+        {
+            if (string.IsNullOrWhiteSpace(RoomSearchText))
+            {
+                FilteredRooms = new ObservableCollection<RoomInformation>(Rooms);
+            }
+            else
+            {
+                var searchTerm = RoomSearchText.ToLower();
+                var filtered = Rooms.Where(r => 
+                    r.RoomNumber.ToLower().Contains(searchTerm) ||
+                    r.RoomDescription.ToLower().Contains(searchTerm) ||
+                    r.RoomMaxCapacity.ToString().Contains(searchTerm) ||
+                    r.RoomPricePerDate.ToString().Contains(searchTerm)
+                ).ToList();
+                
+                FilteredRooms = new ObservableCollection<RoomInformation>(filtered);
+            }
+        }
+
+        private void SearchCustomers()
+        {
+            FilterCustomers();
+            MessageBox.Show($"Found {FilteredCustomers.Count} customer(s) matching '{CustomerSearchText}'", 
+                "Search Results", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void ClearCustomerSearch()
+        {
+            CustomerSearchText = string.Empty;
+            FilteredCustomers = new ObservableCollection<Customer>(Customers);
+            MessageBox.Show("Customer search cleared. Showing all customers.", 
+                "Search Cleared", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void SearchRooms()
+        {
+            FilterRooms();
+            MessageBox.Show($"Found {FilteredRooms.Count} room(s) matching '{RoomSearchText}'", 
+                "Search Results", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void ClearRoomSearch()
+        {
+            RoomSearchText = string.Empty;
+            FilteredRooms = new ObservableCollection<RoomInformation>(Rooms);
+            MessageBox.Show("Room search cleared. Showing all rooms.", 
+                "Search Cleared", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        #endregion
+
+        #region Profile Management
+
+        private async void EditProfile()
+        {
+            try
+            {
+                System.Diagnostics.Debug.WriteLine($"EditProfile: Opening dialog for customer {CurrentUser.CustomerFullName}");
+                var dialog = new Views.CustomerDialog(CurrentUser);
+                
+                System.Diagnostics.Debug.WriteLine("EditProfile: Showing dialog...");
+                var result = dialog.ShowDialog();
+                System.Diagnostics.Debug.WriteLine($"EditProfile: Dialog result: {result}");
+                
+                if (result == true)
+                {
+                    var updatedCustomer = dialog.GetCustomer();
+                    if (updatedCustomer != null)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"EditProfile: Updating customer {updatedCustomer.CustomerFullName}");
+                        await _customerService.UpdateCustomerAsync(updatedCustomer);
+                        
+                        // Update current user
+                        CurrentUser = updatedCustomer;
+                        
+                        // Reload data to refresh the UI
+                        await LoadDataAsync();
+                        await _realtimeDataService.ForceUpdateAsync();
+                        
+                        MessageBox.Show("Profile updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine("EditProfile: Updated customer is null");
+                    }
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("EditProfile: Dialog was cancelled");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"EditProfile: Exception - {ex.Message}");
+                MessageBox.Show($"Error updating profile: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ChangePassword()
+        {
+            try
+            {
+                // Simple password change dialog
+                var newPassword = Microsoft.VisualBasic.Interaction.InputBox(
+                    "Enter new password:", 
+                    "Change Password", 
+                    "", 
+                    -1, 
+                    -1);
+                
+                if (!string.IsNullOrWhiteSpace(newPassword))
+                {
+                    // Update password in current user
+                    CurrentUser.Password = newPassword;
+                    
+                    // Update in database
+                    _ = Task.Run(async () =>
+                    {
+                        try
+                        {
+                            await _customerService.UpdateCustomerAsync(CurrentUser);
+                            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                MessageBox.Show("Password changed successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                MessageBox.Show($"Error changing password: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            });
+                        }
+                    });
+                }
+                else
+                {
+                    MessageBox.Show("Password cannot be empty.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"ChangePassword: Exception - {ex.Message}");
+                MessageBox.Show($"Error changing password: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        #endregion
     }
 }
