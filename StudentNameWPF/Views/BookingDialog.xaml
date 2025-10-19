@@ -26,6 +26,30 @@
         <!-- Content -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <StackPanel>
+                <!-- Customer Information -->
+                <Border Background="White" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                    <StackPanel>
+                        <TextBlock Text="👤 Customer Information" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,15" Foreground="#1F2937"/>
+                        
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Customer Name" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#374151"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" x:Name="CustomerNameText" Text="{Binding CurrentCustomer.CustomerFullName}" FontSize="14" Foreground="#1F2937" Margin="0,0,10,0"/>
+                            
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="Email" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#374151"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" x:Name="CustomerEmailText" Text="{Binding CurrentCustomer.EmailAddress}" FontSize="14" Foreground="#1F2937"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
                 <!-- Room Selection -->
                 <Border Background="White" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,15">
                     <StackPanel>
@@ -39,61 +63,25 @@
                             
                             <ComboBox Grid.Column="0" 
                                       x:Name="RoomComboBox"
+                                      ItemsSource="{Binding AvailableRooms}"
+                                      SelectedItem="{Binding SelectedRoom}"
                                       DisplayMemberPath="RoomNumber"
                                       SelectedValuePath="RoomID"
-                                      Padding="12,8" 
-                                      FontSize="14"
-                                      Background="#F9FAFB"
-                                      BorderBrush="#D1D5DB"
-                                      BorderThickness="1"
-                                      Margin="0,0,10,0">
-                                <ComboBox.Style>
-                                    <Style TargetType="ComboBox">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="ComboBox">
-                                                    <Border Background="{TemplateBinding Background}" 
-                                                            BorderBrush="{TemplateBinding BorderBrush}" 
-                                                            BorderThickness="{TemplateBinding BorderThickness}" 
-                                                            CornerRadius="6">
-                                                        <Grid>
-                                                            <ToggleButton x:Name="ToggleButton" Background="Transparent" BorderThickness="0" Focusable="False" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
-                                                                <Grid>
-                                                                    <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition/>
-                                                                        <ColumnDefinition Width="20"/>
-                                                                    </Grid.ColumnDefinitions>
-                                                                    <Border Grid.Column="0" Background="{TemplateBinding Background}" CornerRadius="6,0,0,6"/>
-                                                                    <Border Grid.Column="1" Background="#E5E7EB" CornerRadius="0,6,6,0" Width="20"/>
-                                                                    <Path Grid.Column="1" Fill="#6B7280" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
-                                                                </Grid>
-                                                            </ToggleButton>
-                                                            <ContentPresenter x:Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="3,3,23,3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                                                        </Grid>
-                                                        <Popup x:Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
-                                                            <Grid x:Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                                                <Border x:Name="DropDownBorder" Background="White" BorderThickness="1" BorderBrush="#D1D5DB" CornerRadius="6"/>
-                                                                <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
-                                                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
-                                                                </ScrollViewer>
-                                                            </Grid>
-                                                        </Popup>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </ComboBox.Style>
-                            </ComboBox>
+                                      Padding="10" 
+                                      BorderBrush="#CCCCCC" 
+                                      BorderThickness="1" 
+                                      Background="White"
+                                      Margin="0,0,10,0"/>
                             
                             <Button Grid.Column="1" 
-                                    Content="🔍 View Details" 
+                                    Content="🔍 Search Rooms" 
                                     Padding="12,8" 
                                     Background="#3B82F6" 
                                     Foreground="White" 
                                     BorderThickness="0" 
                                     Cursor="Hand"
                                     FontWeight="SemiBold"
+                                    Command="{Binding SearchRoomsCommand}"
                                     Click="ViewRoomDetails_Click"/>
                         </Grid>
                         
@@ -124,23 +112,23 @@
                             <TextBlock Grid.Row="0" Grid.Column="0" Text="Check-in Date" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#374151"/>
                             <DatePicker Grid.Row="1" Grid.Column="0" 
                                         x:Name="CheckInDatePicker"
+                                        SelectedDate="{Binding CheckInDate}"
                                         Padding="12,8" 
                                         FontSize="14"
                                         Background="#F9FAFB"
                                         BorderBrush="#D1D5DB"
                                         BorderThickness="1"
-                                        Margin="0,0,10,0"
-                                        SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                                        Margin="0,0,10,0"/>
                             
                             <TextBlock Grid.Row="0" Grid.Column="1" Text="Check-out Date" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#374151"/>
                             <DatePicker Grid.Row="1" Grid.Column="1" 
                                         x:Name="CheckOutDatePicker"
+                                        SelectedDate="{Binding CheckOutDate}"
                                         Padding="12,8" 
                                         FontSize="14"
                                         Background="#F9FAFB"
                                         BorderBrush="#D1D5DB"
-                                        BorderThickness="1"
-                                        SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                                        BorderThickness="1"/>
                         </Grid>
                         
                         <!-- Duration and Price Calculation -->
@@ -157,17 +145,17 @@
                                     
                                     <StackPanel Grid.Column="0">
                                         <TextBlock Text="Duration (Days)" FontSize="12" Foreground="#6B7280"/>
-                                        <TextBlock x:Name="DurationText" Text="0" FontSize="18" FontWeight="Bold" Foreground="#1F2937"/>
+                                        <TextBlock x:Name="DurationText" Text="{Binding DurationDays}" FontSize="18" FontWeight="Bold" Foreground="#1F2937"/>
                                     </StackPanel>
                                     
                                     <StackPanel Grid.Column="1">
                                         <TextBlock Text="Price per Day" FontSize="12" Foreground="#6B7280"/>
-                                        <TextBlock x:Name="PricePerDayText" Text="$0" FontSize="18" FontWeight="Bold" Foreground="#1F2937"/>
+                                        <TextBlock x:Name="PricePerDayText" Text="{Binding SelectedRoom.RoomPricePerDate, StringFormat='${0:F2}'}" FontSize="18" FontWeight="Bold" Foreground="#1F2937"/>
                                     </StackPanel>
                                     
                                     <StackPanel Grid.Column="2">
                                         <TextBlock Text="Total Amount" FontSize="12" Foreground="#6B7280"/>
-                                        <TextBlock x:Name="TotalAmountText" Text="$0" FontSize="20" FontWeight="Bold" Foreground="#10B981"/>
+                                        <TextBlock x:Name="TotalAmountText" Text="{Binding TotalAmount, StringFormat='${0:F2}'}" FontSize="20" FontWeight="Bold" Foreground="#10B981"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -182,6 +170,7 @@
                         
                         <TextBlock Text="Notes (Optional)" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#374151"/>
                         <TextBox x:Name="NotesTextBox"
+                                 Text="{Binding Notes}"
                                  Padding="12,8" 
                                  FontSize="14"
                                  Background="#F9FAFB"
@@ -245,14 +234,14 @@
                 
                 <Button Grid.Column="2" 
                         x:Name="SaveButton"
-                        Content="Create Booking" 
+                        Content="Confirm Booking" 
                         Padding="20,10" 
                         Background="#10B981" 
                         Foreground="White" 
                         BorderThickness="0" 
                         Cursor="Hand"
                         FontWeight="SemiBold"
-                        Click="SaveButton_Click">
+                        Command="{Binding ConfirmBookingCommand}">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#10B981"/>

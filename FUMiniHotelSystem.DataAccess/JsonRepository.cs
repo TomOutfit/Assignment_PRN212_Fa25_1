@@ -119,10 +119,20 @@ namespace FUMiniHotelSystem.DataAccess
 
         private int GetId(T entity)
         {
-            var idProperty = typeof(T).GetProperty("CustomerID") ?? 
-                           typeof(T).GetProperty("RoomID") ?? 
-                           typeof(T).GetProperty("RoomTypeID") ?? 
-                           typeof(T).GetProperty("BookingID");
+            // Get the type name to determine which ID property to use
+            var typeName = typeof(T).Name;
+            
+            var idProperty = typeName switch
+            {
+                "Booking" => typeof(T).GetProperty("BookingID"),
+                "Customer" => typeof(T).GetProperty("CustomerID"),
+                "RoomInformation" => typeof(T).GetProperty("RoomID"),
+                "RoomType" => typeof(T).GetProperty("RoomTypeID"),
+                _ => typeof(T).GetProperty("CustomerID") ?? 
+                     typeof(T).GetProperty("RoomID") ?? 
+                     typeof(T).GetProperty("RoomTypeID") ?? 
+                     typeof(T).GetProperty("BookingID")
+            };
             
             return (int)(idProperty?.GetValue(entity) ?? 0);
         }

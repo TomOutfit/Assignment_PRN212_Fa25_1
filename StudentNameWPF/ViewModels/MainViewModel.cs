@@ -163,6 +163,17 @@ namespace StudentNameWPF.ViewModels
             _excelExportService = new ExcelExportService();
             _realtimeDataService = new RealtimeDataService();
 
+            // Set initial view based on user role
+            if (currentUser.IsAdmin)
+            {
+                CurrentView = "Dashboard";
+            }
+            else
+            {
+                // For regular customers, start with Bookings view to show their booking history
+                CurrentView = "Bookings";
+            }
+
             // Initialize commands
             NavigateCommand = new RelayCommand<string>(Navigate);
             AddCustomerCommand = new RelayCommand(AddCustomer);
@@ -190,6 +201,13 @@ namespace StudentNameWPF.ViewModels
             
             // Load initial data
             _ = LoadDataAsync();
+            
+            // Debug booking search
+            _ = Task.Run(async () => 
+            {
+                await Task.Delay(2000); // Wait for data to load
+                DebugBookingSearch();
+            });
         }
 
         private async Task LoadDataAsync()
@@ -849,47 +867,56 @@ namespace StudentNameWPF.ViewModels
         {
             try
             {
-                var dialog = new Views.BookingDialog();
+                // Create booking dialog with current customer ID
+                var dialog = new Views.BookingDialog(CurrentUser.CustomerID);
                 
                 if (dialog.ShowDialog() == true)
                 {
-                    var newBooking = dialog.GetBooking();
-                    if (newBooking != null)
-                    {
-                        // Set the customer ID to current user
-                        newBooking.CustomerID = CurrentUser.CustomerID;
-                        
-                        await _bookingService.CreateBookingAsync(newBooking);
-                        await LoadDataAsync();
-                        await _realtimeDataService.ForceUpdateAsync();
-                        MessageBox.Show("Booking created successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
+                    // Booking is automatically created and saved by the ViewModel
+                    // Just reload data and show success message
+                    await LoadDataAsync();
+                    await _realtimeDataService.ForceUpdateAsync();
+                    
+                    // Navigate to booking history view after successful booking
+                    CurrentView = "Bookings";
+                    
+                    MessageBox.Show("Đặt phòng thành công!\n\nBạn có thể xem lịch sử đặt phòng trong tab 'Bookings'.", 
+                        "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error creating booking: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Lỗi khi đặt phòng: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private async void EditBooking()
         {
-            if (SelectedBooking == null) return;
+            if (SelectedBooking == null) 
+            {
+                MessageBox.Show("Vui lòng chọn đặt phòng để chỉnh sửa.", "Chưa chọn", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
             try
             {
+                System.Diagnostics.Debug.WriteLine($"EditBooking: Looking for booking with ID: {SelectedBooking.BookingID}");
+                
                 // Get the original booking
                 var originalBooking = await _bookingService.GetBookingByIdAsync(SelectedBooking.BookingID);
                 if (originalBooking == null)
                 {
-                    MessageBox.Show("Booking not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Diagnostics.Debug.WriteLine($"EditBooking: No booking found with ID: {SelectedBooking.BookingID}");
+                    MessageBox.Show($"Không tìm thấy đặt phòng với ID: {SelectedBooking.BookingID}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+                
+                System.Diagnostics.Debug.WriteLine($"EditBooking: Found booking - CustomerID: {originalBooking.CustomerID}, CurrentUser: {CurrentUser.CustomerID}");
 
-                // Check if booking can be edited (only pending bookings)
-                if (originalBooking.BookingStatus != 1)
+                // Check if booking belongs to current user
+                if (originalBooking.CustomerID != CurrentUser.CustomerID)
                 {
-                    MessageBox.Show("Only pending bookings can be edited.", "Cannot Edit", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Bạn chỉ có thể chỉnh sửa đặt phòng của chính mình.", "Không có quyền", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
@@ -903,36 +930,101 @@ namespace StudentNameWPF.ViewModels
                         await _bookingService.UpdateBookingAsync(updatedBooking);
                         await LoadDataAsync();
                         await _realtimeDataService.ForceUpdateAsync();
-                        MessageBox.Show("Booking updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Chỉnh sửa đặt phòng thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error updating booking: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Lỗi khi chỉnh sửa đặt phòng: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private async void CancelBooking()
         {
-            if (SelectedBooking == null) return;
-
-            var result = MessageBox.Show($"Are you sure you want to cancel booking #{SelectedBooking.BookingID}?\n\nThis action cannot be undone.", 
-                "Confirm Cancellation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-            if (result == MessageBoxResult.Yes)
+            if (SelectedBooking == null) 
             {
-                try
+                MessageBox.Show("Vui lòng chọn đặt phòng để hủy.", "Chưa chọn", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                System.Diagnostics.Debug.WriteLine($"CancelBooking: Looking for booking with ID: {SelectedBooking.BookingID}");
+                
+                // Get the original booking
+                var originalBooking = await _bookingService.GetBookingByIdAsync(SelectedBooking.BookingID);
+                if (originalBooking == null)
+                {
+                    System.Diagnostics.Debug.WriteLine($"CancelBooking: No booking found with ID: {SelectedBooking.BookingID}");
+                    MessageBox.Show($"Không tìm thấy đặt phòng với ID: {SelectedBooking.BookingID}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                
+                System.Diagnostics.Debug.WriteLine($"CancelBooking: Found booking - CustomerID: {originalBooking.CustomerID}, CurrentUser: {CurrentUser.CustomerID}");
+
+                // Check if booking belongs to current user
+                if (originalBooking.CustomerID != CurrentUser.CustomerID)
+                {
+                    MessageBox.Show("Bạn chỉ có thể hủy đặt phòng của chính mình.", "Không có quyền", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                var result = MessageBox.Show($"Bạn có chắc chắn muốn hủy đặt phòng #{SelectedBooking.BookingID}?\n\nHành động này không thể hoàn tác.", 
+                    "Xác nhận hủy", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
                 {
                     await _bookingService.CancelBookingAsync(SelectedBooking.BookingID);
                     await LoadDataAsync();
                     await _realtimeDataService.ForceUpdateAsync();
-                    MessageBox.Show("Booking cancelled successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Hủy đặt phòng thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                catch (Exception ex)
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi hủy đặt phòng: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        #endregion
+
+        #region Debug Methods
+
+        private async void DebugBookingSearch()
+        {
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("=== DEBUG BOOKING SEARCH ===");
+                
+                // Get all bookings
+                var allBookings = await _bookingService.GetAllBookingsAsync();
+                System.Diagnostics.Debug.WriteLine($"Total bookings in database: {allBookings.Count}");
+                
+                foreach (var booking in allBookings)
                 {
-                    MessageBox.Show($"Error cancelling booking: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Diagnostics.Debug.WriteLine($"Booking ID: {booking.BookingID}, Customer ID: {booking.CustomerID}, Room ID: {booking.RoomID}");
                 }
+                
+                // Test GetBookingByIdAsync for each booking
+                foreach (var booking in allBookings)
+                {
+                    var foundBooking = await _bookingService.GetBookingByIdAsync(booking.BookingID);
+                    if (foundBooking != null)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"✓ Found booking {booking.BookingID}");
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine($"✗ Could not find booking {booking.BookingID}");
+                    }
+                }
+                
+                System.Diagnostics.Debug.WriteLine("=== END DEBUG ===");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Debug error: {ex.Message}");
             }
         }
 

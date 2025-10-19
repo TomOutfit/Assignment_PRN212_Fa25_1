@@ -17,11 +17,22 @@ namespace StudentNameWPF.Views
             InitializeComponent();
             _viewModel = new BookingDialogViewModel();
             DataContext = _viewModel;
+            
+            // Subscribe to booking confirmed event
+            _viewModel.BookingConfirmed += OnBookingConfirmed;
+            
             InitializeDialog();
         }
 
-        public BookingDialog(Booking booking) : this()
+        public BookingDialog(Booking booking)
         {
+            InitializeComponent();
+            _viewModel = new BookingDialogViewModel();
+            DataContext = _viewModel;
+            
+            // Subscribe to booking confirmed event
+            _viewModel.BookingConfirmed += OnBookingConfirmed;
+            
             _originalBooking = booking;
             _viewModel.LoadBooking(booking);
             DialogTitle.Text = "Edit Booking";
@@ -29,14 +40,33 @@ namespace StudentNameWPF.Views
             InitializeDialog();
         }
 
-        private void InitializeDialog()
+        public BookingDialog(int customerId)
+        {
+            InitializeComponent();
+            _viewModel = new BookingDialogViewModel();
+            DataContext = _viewModel;
+            
+            // Subscribe to booking confirmed event
+            _viewModel.BookingConfirmed += OnBookingConfirmed;
+            
+            // Load customer information
+            _ = LoadCustomerAsync(customerId);
+            
+            InitializeDialog();
+        }
+
+        private async void InitializeDialog()
         {
             // Set minimum date to today
             CheckInDatePicker.DisplayDateStart = DateTime.Today;
             CheckOutDatePicker.DisplayDateStart = DateTime.Today.AddDays(1);
             
+            // Bind event handlers
+            CheckInDatePicker.SelectedDateChanged += (sender, e) => OnDateChanged();
+            CheckOutDatePicker.SelectedDateChanged += (sender, e) => OnDateChanged();
+            
             // Load rooms
-            LoadRooms();
+            await LoadRooms();
             
             // Set default dates
             if (_originalBooking == null)
@@ -48,23 +78,52 @@ namespace StudentNameWPF.Views
             {
                 CheckInDatePicker.SelectedDate = _originalBooking.CheckInDate;
                 CheckOutDatePicker.SelectedDate = _originalBooking.CheckOutDate;
-                RoomComboBox.SelectedValue = _originalBooking.RoomID;
                 NotesTextBox.Text = _originalBooking.Notes;
             }
             
             UpdatePriceCalculation();
+            
+            // Trigger command update for edit mode
+            if (_originalBooking != null)
+            {
+                ((RelayCommand)_viewModel.ConfirmBookingCommand).RaiseCanExecuteChanged();
+            }
         }
 
-        private async void LoadRooms()
+        private async Task LoadCustomerAsync(int customerId)
+        {
+            try
+            {
+                await _viewModel.LoadCustomerAsync(customerId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading customer: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void OnBookingConfirmed(Booking booking)
+        {
+            DialogResult = true;
+            Close();
+        }
+
+        private async Task LoadRooms()
         {
             try
             {
                 await _viewModel.LoadRoomsAsync();
-                RoomComboBox.ItemsSource = _viewModel.AvailableRooms;
                 
+                // Set selected room after loading if editing
                 if (_originalBooking != null)
                 {
-                    RoomComboBox.SelectedValue = _originalBooking.RoomID;
+                    // Wait a bit for the ComboBox to be ready
+                    await Task.Delay(100);
+                    var room = _viewModel.AvailableRooms.FirstOrDefault(r => r.RoomID == _originalBooking.RoomID);
+                    if (room != null)
+                    {
+                        _viewModel.SelectedRoom = room;
+                    }
                 }
             }
             catch (Exception ex)
@@ -75,10 +134,9 @@ namespace StudentNameWPF.Views
 
         private void ViewRoomDetails_Click(object sender, RoutedEventArgs e)
         {
-            if (RoomComboBox.SelectedItem is RoomInformation selectedRoom)
+            if (_viewModel.SelectedRoom != null)
             {
-                _viewModel.SelectedRoom = selectedRoom;
-                ShowRoomDetails(selectedRoom);
+                ShowRoomDetails(_viewModel.SelectedRoom);
             }
             else
             {
@@ -96,10 +154,23 @@ namespace StudentNameWPF.Views
                                  $"Status: {(room.RoomStatus == 1 ? "Available" : "Unavailable")}";
         }
 
-        private async void DatePicker_SelectedDateChanged(object sender, RoutedPropertyChangedEventArgs<DateTime?> e)
+        private async void OnDateChanged()
         {
+            // Update ViewModel dates
+            if (CheckInDatePicker.SelectedDate.HasValue)
+            {
+                _viewModel.CheckInDate = CheckInDatePicker.SelectedDate.Value;
+            }
+            if (CheckOutDatePicker.SelectedDate.HasValue)
+            {
+                _viewModel.CheckOutDate = CheckOutDatePicker.SelectedDate.Value;
+            }
+            
             UpdatePriceCalculation();
             ValidateDates();
+            
+            // Trigger command update
+            ((RelayCommand)_viewModel.ConfirmBookingCommand).RaiseCanExecuteChanged();
             
             // Update available rooms when dates change
             if (CheckInDatePicker.SelectedDate.HasValue && CheckOutDatePicker.SelectedDate.HasValue)
@@ -110,32 +181,9 @@ namespace StudentNameWPF.Views
 
         private void UpdatePriceCalculation()
         {
-            if (CheckInDatePicker.SelectedDate.HasValue && 
-                CheckOutDatePicker.SelectedDate.HasValue && 
-                RoomComboBox.SelectedItem is RoomInformation selectedRoom)
-            {
-                var checkIn = CheckInDatePicker.SelectedDate.Value;
-                var checkOut = CheckOutDatePicker.SelectedDate.Value;
-                
-                if (checkOut > checkIn)
-                {
-                    var duration = (checkOut - checkIn).Days;
-                    var totalAmount = duration * selectedRoom.RoomPricePerDate;
-                    
-                    DurationText.Text = duration.ToString();
-                    PricePerDayText.Text = $"${selectedRoom.RoomPricePerDate:F2}";
-                    TotalAmountText.Text = $"${totalAmount:F2}";
-                    
-                    _viewModel.TotalAmount = totalAmount;
-                }
-            }
-            else
-            {
-                DurationText.Text = "0";
-                PricePerDayText.Text = "$0";
-                TotalAmountText.Text = "$0";
-                _viewModel.TotalAmount = 0;
-            }
+            // The price calculation is now handled by the ViewModel
+            // This method is kept for backward compatibility but the actual calculation
+            // is done in the ViewModel's UpdateTotalAmount method
         }
 
         private void ValidateDates()
@@ -185,7 +233,7 @@ namespace StudentNameWPF.Views
 
         private bool ValidateBooking()
         {
-            if (RoomComboBox.SelectedItem == null)
+            if (RoomComboBox.SelectedValue == null)
             {
                 MessageBox.Show("Please select a room.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
@@ -223,8 +271,8 @@ namespace StudentNameWPF.Views
                 {
                     CustomerID = _viewModel.CustomerID,
                     RoomID = (int)RoomComboBox.SelectedValue,
-                    CheckInDate = CheckInDatePicker.SelectedDate.Value,
-                    CheckOutDate = CheckOutDatePicker.SelectedDate.Value,
+                    CheckInDate = CheckInDatePicker.SelectedDate ?? DateTime.Today,
+                    CheckOutDate = CheckOutDatePicker.SelectedDate ?? DateTime.Today.AddDays(1),
                     TotalAmount = _viewModel.TotalAmount,
                     Notes = NotesTextBox.Text,
                     BookingStatus = 1, // Pending
@@ -256,7 +304,6 @@ namespace StudentNameWPF.Views
                     if (checkOut > checkIn)
                     {
                         await _viewModel.LoadAvailableRoomsAsync(checkIn, checkOut);
-                        RoomComboBox.ItemsSource = _viewModel.AvailableRooms;
                         
                         // Show message if no rooms available
                         if (_viewModel.AvailableRooms.Count == 0)
