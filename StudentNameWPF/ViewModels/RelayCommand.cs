@@ -28,6 +28,11 @@ namespace StudentNameWPF.ViewModels
         {
             _execute();
         }
+
+        public void RaiseCanExecuteChanged()
+        {
+            CommandManager.InvalidateRequerySuggested();
+        }
     }
 
     public class RelayCommand<T> : ICommand
@@ -55,6 +60,11 @@ namespace StudentNameWPF.ViewModels
         public void Execute(object? parameter)
         {
             _execute((T)parameter!);
+        }
+
+        public void RaiseCanExecuteChanged()
+        {
+            CommandManager.InvalidateRequerySuggested();
         }
     }
 }
