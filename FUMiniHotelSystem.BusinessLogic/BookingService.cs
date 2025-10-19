@@ -38,11 +38,35 @@ namespace FUMiniHotelSystem.BusinessLogic
 
         public async Task<Booking> CreateBookingAsync(Booking booking)
         {
+            // Validate dates
+            if (booking.CheckInDate >= booking.CheckOutDate)
+            {
+                throw new InvalidOperationException("Check-out date must be after check-in date");
+            }
+
+            if (booking.CheckInDate < DateTime.Today)
+            {
+                throw new InvalidOperationException("Check-in date cannot be in the past");
+            }
+
             // Validate room availability
             var room = await _roomRepository.GetByIdAsync(booking.RoomID);
             if (room == null || room.RoomStatus != 1)
             {
                 throw new InvalidOperationException("Room not available");
+            }
+
+            // Check for date conflicts
+            var conflictingBookings = await _bookingRepository.GetBookingsByDateRangeAsync(booking.CheckInDate, booking.CheckOutDate);
+            var roomConflicts = conflictingBookings.Where(b => 
+                b.RoomID == booking.RoomID && 
+                b.BookingStatus != 3 && // Not cancelled
+                ((b.CheckInDate < booking.CheckOutDate && b.CheckOutDate > booking.CheckInDate))
+            ).ToList();
+
+            if (roomConflicts.Any())
+            {
+                throw new InvalidOperationException("Room is not available for the selected dates. Please choose different dates or room.");
             }
 
             // Validate customer
@@ -63,6 +87,38 @@ namespace FUMiniHotelSystem.BusinessLogic
 
         public async Task<bool> UpdateBookingAsync(Booking booking)
         {
+            // Validate dates
+            if (booking.CheckInDate >= booking.CheckOutDate)
+            {
+                throw new InvalidOperationException("Check-out date must be after check-in date");
+            }
+
+            if (booking.CheckInDate < DateTime.Today)
+            {
+                throw new InvalidOperationException("Check-in date cannot be in the past");
+            }
+
+            // Validate room availability
+            var room = await _roomRepository.GetByIdAsync(booking.RoomID);
+            if (room == null || room.RoomStatus != 1)
+            {
+                throw new InvalidOperationException("Room not available");
+            }
+
+            // Check for date conflicts (excluding current booking)
+            var conflictingBookings = await _bookingRepository.GetBookingsByDateRangeAsync(booking.CheckInDate, booking.CheckOutDate);
+            var roomConflicts = conflictingBookings.Where(b => 
+                b.RoomID == booking.RoomID && 
+                b.BookingID != booking.BookingID && // Exclude current booking
+                b.BookingStatus != 3 && // Not cancelled
+                ((b.CheckInDate < booking.CheckOutDate && b.CheckOutDate > booking.CheckInDate))
+            ).ToList();
+
+            if (roomConflicts.Any())
+            {
+                throw new InvalidOperationException("Room is not available for the selected dates. Please choose different dates or room.");
+            }
+
             return await _bookingRepository.UpdateAsync(booking);
         }
 
@@ -86,6 +142,46 @@ namespace FUMiniHotelSystem.BusinessLogic
                 return await _bookingRepository.UpdateAsync(booking);
             }
             return false;
+        }
+
+        public async Task<bool> CompleteBookingAsync(int id)
+        {
+            var booking = await _bookingRepository.GetByIdAsync(id);
+            if (booking != null)
+            {
+                booking.BookingStatus = 4; // Completed
+                return await _bookingRepository.UpdateAsync(booking);
+            }
+            return false;
+        }
+
+        public async Task<List<Booking>> GetBookingsByStatusAsync(int status)
+        {
+            var allBookings = await _bookingRepository.GetAllAsync();
+            return allBookings.Where(b => b.BookingStatus == status).ToList();
+        }
+
+        public async Task<List<Booking>> GetAvailableRoomsAsync(DateTime checkIn, DateTime checkOut)
+        {
+            var allRooms = await _roomRepository.GetAllAsync();
+            var availableRooms = new List<RoomInformation>();
+            
+            foreach (var room in allRooms.Where(r => r.RoomStatus == 1))
+            {
+                var conflictingBookings = await _bookingRepository.GetBookingsByDateRangeAsync(checkIn, checkOut);
+                var hasConflict = conflictingBookings.Any(b => 
+                    b.RoomID == room.RoomID && 
+                    b.BookingStatus != 3 && // Not cancelled
+                    ((b.CheckInDate < checkOut && b.CheckOutDate > checkIn))
+                );
+                
+                if (!hasConflict)
+                {
+                    availableRooms.Add(room);
+                }
+            }
+            
+            return availableRooms;
         }
     }
 }
