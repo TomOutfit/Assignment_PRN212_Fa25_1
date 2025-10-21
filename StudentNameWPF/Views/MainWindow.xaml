@@ -703,8 +703,6 @@
                                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Birthday:" FontWeight="SemiBold" Margin="0,0,0,10" Foreground="#374151"/>
                                     <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding CurrentUser.CustomerBirthday, StringFormat=MM/dd/yyyy}" Margin="0,0,0,10" Foreground="#6B7280"/>
                                     
-                                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Status:" FontWeight="SemiBold" Margin="0,0,0,10" Foreground="#374151"/>
-                                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CurrentUser.CustomerStatus}" Margin="0,0,0,10" Foreground="#6B7280"/>
                                 </Grid>
                                 
                                 <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
