@@ -456,7 +456,6 @@
                                 <DataGridTextColumn Header="Email" Binding="{Binding EmailAddress}" Width="250"/>
                                 <DataGridTextColumn Header="Telephone" Binding="{Binding Telephone}" Width="120"/>
                                 <DataGridTextColumn Header="Birthday" Binding="{Binding CustomerBirthday, StringFormat=MM/dd/yyyy}" Width="100"/>
-                                <DataGridTextColumn Header="Status" Binding="{Binding CustomerStatus}" Width="80"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
@@ -589,7 +588,6 @@
                                 <DataGridTextColumn Header="Capacity" Binding="{Binding RoomMaxCapacity}" Width="80"/>
                                 <DataGridTextColumn Header="Price" Binding="{Binding RoomPricePerDate, StringFormat='${0:0}'}" Width="120"/>
                                 <DataGridTextColumn Header="Type" Binding="{Binding RoomTypeID, Converter={StaticResource RoomTypeConverter}}" Width="120"/>
-                                <DataGridTextColumn Header="Status" Binding="{Binding RoomStatus}" Width="80"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
