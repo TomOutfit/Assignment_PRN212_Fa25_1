@@ -227,18 +227,24 @@ namespace StudentNameWPF.ViewModels
                     var roomTypes = await _roomService.GetAllRoomTypesAsync();
                     RoomTypes = new ObservableCollection<RoomType>(roomTypes);
                     
-                    // Load all bookings for admin
+                    // Load all bookings for admin (chỉ hiển thị booking đã Booked)
                     var allBookings = await _bookingService.GetAllBookingsAsync();
-                    var bookingDisplayModels = allBookings.Select(booking => 
-                    {
-                        var customer = Customers.FirstOrDefault(c => c.CustomerID == booking.CustomerID);
-                        var room = Rooms.FirstOrDefault(r => r.RoomID == booking.RoomID);
-                        return BookingDisplayModel.FromBooking(
-                            booking, 
-                            customer?.CustomerFullName ?? "Unknown Customer",
-                            room?.RoomNumber ?? "Unknown Room"
-                        );
-                    }).ToList();
+                    System.Diagnostics.Debug.WriteLine($"LoadDataAsync: Total bookings from service: {allBookings.Count}");
+                    
+                    var bookingDisplayModels = allBookings
+                        .Where(booking => booking.BookingStatus == 1) // Chỉ hiển thị booking đã Booked
+                        .Select(booking => 
+                        {
+                            var customer = Customers.FirstOrDefault(c => c.CustomerID == booking.CustomerID);
+                            var room = Rooms.FirstOrDefault(r => r.RoomID == booking.RoomID);
+                            return BookingDisplayModel.FromBooking(
+                                booking, 
+                                customer?.CustomerFullName ?? "Unknown Customer",
+                                room?.RoomNumber ?? "Unknown Room"
+                            );
+                        }).ToList();
+                    
+                    System.Diagnostics.Debug.WriteLine($"LoadDataAsync: Booked bookings count: {bookingDisplayModels.Count}");
                     Bookings = new ObservableCollection<BookingDisplayModel>(bookingDisplayModels);
                 }
                 else
@@ -248,17 +254,24 @@ namespace StudentNameWPF.ViewModels
                     Rooms = new ObservableCollection<RoomInformation>(rooms);
                     FilteredRooms = new ObservableCollection<RoomInformation>(rooms);
                     
-                    // Load only customer's bookings for regular users
+                    // Load only customer's bookings for regular users (chỉ hiển thị booking đã Booked)
                     var bookings = await _bookingService.GetBookingsByCustomerIdAsync(CurrentUser.CustomerID);
-                    var bookingDisplayModels = bookings.Select(booking => 
-                    {
-                        var room = Rooms.FirstOrDefault(r => r.RoomID == booking.RoomID);
-                        return BookingDisplayModel.FromBooking(
-                            booking, 
-                            CurrentUser.CustomerFullName,
-                            room?.RoomNumber ?? "Unknown Room"
-                        );
-                    }).ToList();
+                    System.Diagnostics.Debug.WriteLine($"LoadDataAsync (Regular User): Total bookings for customer {CurrentUser.CustomerID}: {bookings.Count}");
+                    
+                    var bookingDisplayModels = bookings
+                        .Where(booking => booking.BookingStatus == 1) // Chỉ hiển thị booking đã Booked
+                        .Select(booking => 
+                        {
+                            System.Diagnostics.Debug.WriteLine($"LoadDataAsync (Regular User): Processing booking ID: {booking.BookingID}, Status: {booking.BookingStatus}, CustomerID: {booking.CustomerID}");
+                            var room = Rooms.FirstOrDefault(r => r.RoomID == booking.RoomID);
+                            return BookingDisplayModel.FromBooking(
+                                booking, 
+                                CurrentUser.CustomerFullName,
+                                room?.RoomNumber ?? "Unknown Room"
+                            );
+                        }).ToList();
+                    
+                    System.Diagnostics.Debug.WriteLine($"LoadDataAsync (Regular User): Booked bookings count: {bookingDisplayModels.Count}");
                     Bookings = new ObservableCollection<BookingDisplayModel>(bookingDisplayModels);
                 }
             }
@@ -913,6 +926,13 @@ namespace StudentNameWPF.ViewModels
                 
                 System.Diagnostics.Debug.WriteLine($"EditBooking: Found booking - CustomerID: {originalBooking.CustomerID}, CurrentUser: {CurrentUser.CustomerID}");
 
+                // Admin không thể edit booking
+                if (CurrentUser.IsAdmin)
+                {
+                    MessageBox.Show("Admin chỉ có thể xem thông tin booking, không thể chỉnh sửa.", "Không có quyền", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                
                 // Check if booking belongs to current user
                 if (originalBooking.CustomerID != CurrentUser.CustomerID)
                 {
@@ -927,9 +947,20 @@ namespace StudentNameWPF.ViewModels
                     var updatedBooking = dialog.GetBooking();
                     if (updatedBooking != null)
                     {
+                        System.Diagnostics.Debug.WriteLine($"EditBooking: Updating booking ID: {updatedBooking.BookingID}");
+                        System.Diagnostics.Debug.WriteLine($"EditBooking: Original booking ID: {originalBooking.BookingID}");
+                        System.Diagnostics.Debug.WriteLine($"EditBooking: Updated booking ID: {updatedBooking.BookingID}");
+                        
                         await _bookingService.UpdateBookingAsync(updatedBooking);
+                        System.Diagnostics.Debug.WriteLine($"EditBooking: Booking updated successfully, refreshing data...");
+                        
+                        // Clear current selection to avoid issues
+                        SelectedBooking = null;
+                        
                         await LoadDataAsync();
                         await _realtimeDataService.ForceUpdateAsync();
+                        
+                        System.Diagnostics.Debug.WriteLine($"EditBooking: Data refreshed, current bookings count: {Bookings.Count}");
                         MessageBox.Show("Chỉnh sửa đặt phòng thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
@@ -963,6 +994,13 @@ namespace StudentNameWPF.ViewModels
                 
                 System.Diagnostics.Debug.WriteLine($"CancelBooking: Found booking - CustomerID: {originalBooking.CustomerID}, CurrentUser: {CurrentUser.CustomerID}");
 
+                // Admin không thể cancel booking
+                if (CurrentUser.IsAdmin)
+                {
+                    MessageBox.Show("Admin chỉ có thể xem thông tin booking, không thể hủy.", "Không có quyền", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                
                 // Check if booking belongs to current user
                 if (originalBooking.CustomerID != CurrentUser.CustomerID)
                 {

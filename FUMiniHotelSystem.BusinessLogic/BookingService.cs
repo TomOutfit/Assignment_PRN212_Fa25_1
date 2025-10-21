@@ -60,11 +60,11 @@ namespace FUMiniHotelSystem.BusinessLogic
                 throw new InvalidOperationException("Phòng không khả dụng");
             }
 
-            // Check for conflicts
-            var conflictingBookings = await _bookingRepository.GetBookingsByDateRangeAsync(booking.CheckInDate, booking.CheckOutDate);
-            var hasConflict = conflictingBookings.Any(b => 
+            // Check for conflicts (đơn giản hóa - chỉ kiểm tra booking còn tồn tại)
+            var allBookings = await _bookingRepository.GetAllAsync();
+            var hasConflict = allBookings.Any(b => 
                 b.RoomID == booking.RoomID && 
-                b.BookingStatus != 3 && // Not cancelled
+                b.BookingStatus == 1 && // Chỉ kiểm tra booking đã booked
                 ((b.CheckInDate < booking.CheckOutDate && b.CheckOutDate > booking.CheckInDate))
             );
 
@@ -77,7 +77,7 @@ namespace FUMiniHotelSystem.BusinessLogic
             var bookings = await _bookingRepository.GetAllAsync();
             booking.BookingID = bookings.Count > 0 ? bookings.Max(b => b.BookingID) + 1 : 1;
             booking.CreatedDate = DateTime.Now;
-            booking.BookingStatus = 1; // Pending
+            booking.BookingStatus = 1; // Booked (đơn giản hóa - chỉ có trạng thái Booked)
 
             return await _bookingRepository.AddAsync(booking);
         }
@@ -102,12 +102,12 @@ namespace FUMiniHotelSystem.BusinessLogic
                 throw new InvalidOperationException("Phòng không khả dụng");
             }
 
-            // Check for conflicts (excluding current booking)
-            var conflictingBookings = await _bookingRepository.GetBookingsByDateRangeAsync(booking.CheckInDate, booking.CheckOutDate);
-            var hasConflict = conflictingBookings.Any(b => 
+            // Check for conflicts (excluding current booking) - sửa lỗi edit
+            var allBookings = await _bookingRepository.GetAllAsync();
+            var hasConflict = allBookings.Any(b => 
                 b.RoomID == booking.RoomID && 
                 b.BookingID != booking.BookingID && // Exclude current booking
-                b.BookingStatus != 3 && // Not cancelled
+                b.BookingStatus == 1 && // Chỉ kiểm tra booking đã booked
                 ((b.CheckInDate < booking.CheckOutDate && b.CheckOutDate > booking.CheckInDate))
             );
 
@@ -121,37 +121,12 @@ namespace FUMiniHotelSystem.BusinessLogic
 
         public async Task<bool> CancelBookingAsync(int id)
         {
-            // Simply delete the booking from database
+            // Xóa hoàn toàn booking khỏi database (đơn giản hóa)
             return await _bookingRepository.DeleteAsync(id);
         }
 
-        public async Task<bool> ConfirmBookingAsync(int id)
-        {
-            var booking = await _bookingRepository.GetByIdAsync(id);
-            if (booking != null)
-            {
-                booking.BookingStatus = 2; // Confirmed
-                return await _bookingRepository.UpdateAsync(booking);
-            }
-            return false;
-        }
-
-        public async Task<bool> CompleteBookingAsync(int id)
-        {
-            var booking = await _bookingRepository.GetByIdAsync(id);
-            if (booking != null)
-            {
-                booking.BookingStatus = 4; // Completed
-                return await _bookingRepository.UpdateAsync(booking);
-            }
-            return false;
-        }
-
-        public async Task<List<Booking>> GetBookingsByStatusAsync(int status)
-        {
-            var allBookings = await _bookingRepository.GetAllAsync();
-            return allBookings.Where(b => b.BookingStatus == status).ToList();
-        }
+        // Loại bỏ các method không cần thiết cho trạng thái đơn giản
+        // Chỉ giữ lại Create, Update, Delete và Get methods
 
         public async Task<List<RoomInformation>> GetAvailableRoomsAsync(DateTime checkIn, DateTime checkOut)
         {
@@ -159,10 +134,10 @@ namespace FUMiniHotelSystem.BusinessLogic
             var allRooms = await _roomRepository.GetAllAsync();
             var activeRooms = allRooms.Where(r => r.RoomStatus == 1).ToList();
             
-            // Get all bookings in the date range using LINQ
+            // Get all bookings in the date range using LINQ (đơn giản hóa)
             var allBookings = await _bookingRepository.GetAllAsync();
             var conflictingBookings = allBookings.Where(b => 
-                b.BookingStatus != 3 && // Not cancelled
+                b.BookingStatus == 1 && // Chỉ kiểm tra booking đã booked
                 b.CheckInDate < checkOut && 
                 b.CheckOutDate > checkIn
             ).ToList();
@@ -184,10 +159,10 @@ namespace FUMiniHotelSystem.BusinessLogic
                 r.RoomTypeID == roomTypeId
             ).ToList();
             
-            // Get conflicting bookings using LINQ
+            // Get conflicting bookings using LINQ (đơn giản hóa)
             var allBookings = await _bookingRepository.GetAllAsync();
             var conflictingBookings = allBookings.Where(b => 
-                b.BookingStatus != 3 && // Not cancelled
+                b.BookingStatus == 1 && // Chỉ kiểm tra booking đã booked
                 b.CheckInDate < checkOut && 
                 b.CheckOutDate > checkIn
             ).ToList();
@@ -209,10 +184,10 @@ namespace FUMiniHotelSystem.BusinessLogic
                 r.RoomMaxCapacity >= minCapacity
             ).ToList();
             
-            // Get conflicting bookings using LINQ
+            // Get conflicting bookings using LINQ (đơn giản hóa)
             var allBookings = await _bookingRepository.GetAllAsync();
             var conflictingBookings = allBookings.Where(b => 
-                b.BookingStatus != 3 && // Not cancelled
+                b.BookingStatus == 1 && // Chỉ kiểm tra booking đã booked
                 b.CheckInDate < checkOut && 
                 b.CheckOutDate > checkIn
             ).ToList();

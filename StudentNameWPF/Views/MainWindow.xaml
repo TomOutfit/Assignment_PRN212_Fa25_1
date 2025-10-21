@@ -603,7 +603,7 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             
-                            <TextBlock Grid.Column="0" Text="My Bookings" FontSize="24" FontWeight="Bold" Foreground="#1F2937"/>
+                            <TextBlock Grid.Column="0" Text="{Binding CurrentUser.IsAdmin, Converter={StaticResource BooleanToTextConverter}, ConverterParameter=All Bookings|My Bookings}" FontSize="24" FontWeight="Bold" Foreground="#1F2937"/>
                             
                             <StackPanel Grid.Column="1" Orientation="Horizontal">
                                 <Button Content="➕ New Booking" 
@@ -614,7 +614,8 @@
                                         BorderThickness="0" 
                                         Margin="0,0,10,0"
                                         Cursor="Hand"
-                                        FontWeight="SemiBold"/>
+                                        FontWeight="SemiBold"
+                                        Visibility="{Binding CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Invert}"/>
                                 
                                 <Button Content="✏️ Edit Booking" 
                                         Command="{Binding EditBookingCommand}"
@@ -624,7 +625,8 @@
                                         BorderThickness="0" 
                                         Margin="0,0,10,0"
                                         Cursor="Hand"
-                                        FontWeight="SemiBold"/>
+                                        FontWeight="SemiBold"
+                                        Visibility="{Binding CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Invert}"/>
                                 
                                 <Button Content="❌ Cancel Booking" 
                                         Command="{Binding CancelBookingCommand}"
@@ -633,44 +635,11 @@
                                         Foreground="White" 
                                         BorderThickness="0" 
                                         Cursor="Hand"
-                                        FontWeight="SemiBold"/>
+                                        FontWeight="SemiBold"
+                                        Visibility="{Binding CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Invert}"/>
                             </StackPanel>
                         </Grid>
                         
-                        <!-- Booking Status Legend -->
-                        <Border Background="#F0F9FF" BorderBrush="#3B82F6" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,20">
-                            <StackPanel>
-                                <TextBlock Text="📋 Booking Status Legend" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10" Foreground="#1E40AF"/>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <StackPanel Grid.Column="0">
-                                        <TextBlock Text="1 - Pending" FontSize="12" Foreground="#6B7280"/>
-                                        <TextBlock Text="Awaiting confirmation" FontSize="10" Foreground="#9CA3AF"/>
-                                    </StackPanel>
-                                    
-                                    <StackPanel Grid.Column="1">
-                                        <TextBlock Text="2 - Confirmed" FontSize="12" Foreground="#6B7280"/>
-                                        <TextBlock Text="Booking confirmed" FontSize="10" Foreground="#9CA3AF"/>
-                                    </StackPanel>
-                                    
-                                    <StackPanel Grid.Column="2">
-                                        <TextBlock Text="3 - Cancelled" FontSize="12" Foreground="#6B7280"/>
-                                        <TextBlock Text="Booking cancelled" FontSize="10" Foreground="#9CA3AF"/>
-                                    </StackPanel>
-                                    
-                                    <StackPanel Grid.Column="3">
-                                        <TextBlock Text="4 - Completed" FontSize="12" Foreground="#6B7280"/>
-                                        <TextBlock Text="Stay completed" FontSize="10" Foreground="#9CA3AF"/>
-                                    </StackPanel>
-                                </Grid>
-                            </StackPanel>
-                        </Border>
                         
                         <DataGrid ItemsSource="{Binding Bookings}" 
                                   SelectedItem="{Binding SelectedBooking}"
@@ -699,29 +668,6 @@
                                 <DataGridTextColumn Header="Check In" Binding="{Binding CheckInDate, StringFormat=MM/dd/yyyy}" Width="100"/>
                                 <DataGridTextColumn Header="Check Out" Binding="{Binding CheckOutDate, StringFormat=MM/dd/yyyy}" Width="100"/>
                                 <DataGridTextColumn Header="Total Amount" Binding="{Binding TotalAmount, StringFormat='${0:0}'}" Width="120"/>
-                                <DataGridTextColumn Header="Status" Binding="{Binding BookingStatus}" Width="80">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                                            <Setter Property="FontWeight" Value="SemiBold"/>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding BookingStatus}" Value="1">
-                                                    <Setter Property="Foreground" Value="#F59E0B"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding BookingStatus}" Value="2">
-                                                    <Setter Property="Foreground" Value="#10B981"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding BookingStatus}" Value="3">
-                                                    <Setter Property="Foreground" Value="#EF4444"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding BookingStatus}" Value="4">
-                                                    <Setter Property="Foreground" Value="#6B7280"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-                                <DataGridTextColumn Header="Created Date" Binding="{Binding CreatedDate, StringFormat=MM/dd/yyyy}" Width="120"/>
                                 <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="200"/>
                             </DataGrid.Columns>
                         </DataGrid>
